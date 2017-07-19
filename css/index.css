@@ -27,6 +27,7 @@ header{
 	position:fixed;
 	top:0;
 	z-index:1000;
+	min-width: 1200px;
 	}	
 .inner{
 	width:1200px;
@@ -83,6 +84,7 @@ header a{
 	}	
 section{
 	padding:120px 0 90px;
+	min-width: 1200px;
 	}
 #page1{
 	background:#cfcfcf;
@@ -227,6 +229,7 @@ section{
 footer{
 	height:42px;
 	background:#222;
+	min-width: 1200px;
 	}	
 footer p{
 	line-height:42px;
