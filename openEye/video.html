@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>视频详情页</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/swiper.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/jquery.lazyload.min.js"></script>
+<script src="js/swiper.js"></script>
+<script type="text/javascript">
+$(function () {
+	//视频播放
+	$("#play-button").on("touchstart mousedown", function () {
+		$(".kyt-player .cover, #play-button").hide();
+		$("#video")[0].play();
+	});
+	//分享点击功能
+	$("#shareBtn").on("touchstart mousedown", function (e) {
+		$(".sharePop").show();
+		return false;
+	});
+	$(".sharePop").on("touchstart mousedown", function () {
+		$(this).hide();
+	});
+});
+</script>
+</head>
+<body class="videoPage">
+<div class="kyt-player">
+	<video id="video" playsinline="true" preload="none" src="http://baobab.kaiyanapp.com/api/v1/playUrl?vid=35300&amp;editionType=normal&amp;source=qcloud" controls=""></video>
+	<div class="cover" style="background-image: url(&quot;http://img.kaiyanapp.com/9d2b5c75f297e6c4c72b1f25248703c8.jpeg?imageMogr2/quality/60/format/jpg&quot;);"></div>
+	<div class="play-button" id="play-button"></div>
+</div>
+<div class="video-info" style="background-image: url(images/078b8ad2e9514d847c949909533bcdf4.jpeg);">
+	<div class="video-meta-positioner">
+		<div class="video-meta">
+	    	<h1>收到一只小奶猫作礼物，萌哭</h1>
+	    	<div class="kyt-divider kyt-divider-short"></div>
+	    	<p>萌宠 / 3' 51"</p>
+	    	<p class="description">如果在圣诞节收到一只激萌喵星人，简直太棒了！</p>
+	    </div>
+	    <ul class="icoLists">
+	    	<li>
+	    		<a href="javascript:;">
+	    			<span class="video-ico"></span>
+	    			<span class="video-text">点赞</span>
+		    	</a>
+		    </li>
+		    <li>
+	    		<a href="javascript:;" id="shareBtn">
+	    			<span class="video-ico"></span>
+	    			<span class="video-text">分享</span>
+		    	</a>
+		    </li>
+	    </ul>
+	    <div class="video-mess">
+	    	<input type="text" class="messages">
+	    	<a href="javascript:;">评论</a>
+	    </div>
+	</div>
+
+	<div class="reply-list-container">
+		<div class="kyt-divider"></div>
+	    <div class="header">热门评论</div>
+	    <div class="reply-list">  
+	    	<a>
+	          	<div class="reply">
+	            	<div class="like">
+	                	<div class="like-count">
+		                    <div>432</div>
+		                    <div class="like-count-icon"></div>
+	                 	</div>  
+	                 	<div class="like-count-hot">- Hot -</div>  
+	                </div>
+	                <div class="avatar" style="background-image: url('http://img.kaiyanapp.com/3204b274b37b0c545ee6c913589ee7a5.png')"></div>
+	                <div class="entity">
+		                <p class="username">毛总好</p>
+		                <p class="time">2016-12-14 21:26</p>
+		                <p class="text">一位喜爱的印度男演员，一位很有影响力的演员，一位很值得钦佩的演员</p>
+	                </div>
+	        	</div>
+	        </a>
+	        <a>
+	          	<div class="reply">
+	            	<div class="like">
+	                	<div class="like-count">
+		                    <div>432</div>
+		                    <div class="like-count-icon"></div>
+	                 	</div>  
+	                 	<div class="like-count-hot">- Hot -</div>  
+	                </div>
+	                <div class="avatar" style="background-image: url('http://img.kaiyanapp.com/3204b274b37b0c545ee6c913589ee7a5.png')"></div>
+	                <div class="entity">
+		                <p class="username">毛总好</p>
+		                <p class="time">2016-12-14 21:26</p>
+		                <p class="text">一位喜爱的印度男演员，一位很有影响力的演员，一位很值得钦佩的演员</p>
+	                </div>
+	        	</div>
+	        </a>
+	    </div>   
+	    <div class="kyt-divider"></div>
+	</div>
+
+	<div class="relate-video-list-positioner">
+		<div class="relate-video-list">  
+			<a href="https://lkme.cc/3rC/O7lijfJ9I" data-vid="36153">
+                <div class="relate-video" data-vid="36153">
+                	<div class="cover" style="background-image: url(http://img.kaiyanapp.com/4f087b977e5605f928916aa81730fbcf.jpeg?imageMogr2/quality/60/format/jpg/thumbnail/300x/interlace/1)"></div>
+                  	<div class="meta">
+	                    <div class="title">戳笑点：喵星人在各种奇怪的地方睡着</div>
+	                    <div class="category">#萌宠 / 3' 30"</div>
+	                </div>
+                </div>
+            </a>
+            <a href="https://lkme.cc/3rC/O7lijfJ9I" data-vid="36153">
+                <div class="relate-video" data-vid="36153">
+                	<div class="cover" style="background-image: url(http://img.kaiyanapp.com/4f087b977e5605f928916aa81730fbcf.jpeg?imageMogr2/quality/60/format/jpg/thumbnail/300x/interlace/1)"></div>
+                  	<div class="meta">
+	                    <div class="title">戳笑点：喵星人在各种奇怪的地方睡着</div>
+	                    <div class="category">#萌宠 / 3' 30"</div>
+	                </div>
+                </div>
+            </a>
+            <a href="https://lkme.cc/3rC/O7lijfJ9I" data-vid="36153">
+                <div class="relate-video" data-vid="36153">
+                	<div class="cover" style="background-image: url(http://img.kaiyanapp.com/4f087b977e5605f928916aa81730fbcf.jpeg?imageMogr2/quality/60/format/jpg/thumbnail/300x/interlace/1)"></div>
+                  	<div class="meta">
+	                    <div class="title">戳笑点：喵星人在各种奇怪的地方睡着</div>
+	                    <div class="category">#萌宠 / 3' 30"</div>
+	                </div>
+                </div>
+            </a>  
+        </div>
+    </div>
+    <div class="kyt-footer">
+    	<a href="/"><div class="bottom-logo"></div></a>
+    	<img src="images/eyepetizer-wx-qr.243f15a2.png" >
+    	<div class="qr-tips">长按二维码关注「开眼 Eyepetizer」微信公众号</div>
+    </div>
+</div>
+<div class="sharePop"><img src="images/share.png" /></div>
+</body>
+</html>
