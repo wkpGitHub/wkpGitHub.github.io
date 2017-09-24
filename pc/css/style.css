@@ -1,0 +1,78 @@
+@media screen and (max-width:1100px) and (min-width:769px){
+	.nav_bot{display:none;}
+	.sec_ul{width:100%;height:325px;}
+	.sec_ul li{width:50%;box-sizing:border-box;border:5px solid #fff;margin-top:0;margin-right:0;height:160px;}
+	.sec_ul .sec_li_1{background:url(../images/sec_li_1100_02.jpg) no-repeat center;}
+	.sec_ul .sec_li_2{background:url(../images/sec_li_1100_04.jpg) no-repeat center;}
+	.sec_ul .sec_li_3{background:url(../images/sec_li_1100_07.jpg) no-repeat center;}
+	.sec_ul .sec_li_4{background:url(../images/sec_li_1100_08.jpg) no-repeat center;display:block}
+	.sec_bot{display:none;}
+	#footer{height:450px;background:#333;min-width:768px;}
+	.footer_in{width:100%;margin:0 auto;padding-top:20px;}
+	#footer li{display:inline-block;margin:0 12px;line-height:80px;font-size:14px;color:#fff;}
+	#index_tjt .main .image{padding:50px 0 160px;width:80%;padding-left:10%;padding-right:10%;}
+	#index_hz .sec_bot{display:block;}
+	}
+	
+	
+	
+	
+	
+	
+@media screen and (max-width:768px){
+	.nav_ul{display:none;}
+	.nav_content{max-width:768px;}
+	.nav_phone{display:block;}
+	.flexslider .slides a{
+		width: 100%;
+		height:100%;
+		display:block;
+		background:none;
+	}
+	.flex-direction-nav a{display:none;}
+	.flexslider .slides a img{display:block;}
+	.flexslider{heigth:500px;}
+	.flex-control-nav {position:absolute;bottom: 15px;}
+	.sec_bot{display:none;}
+	.sec_ul{width:100%;height:700px;}
+	.sec_ul li{width:100%;box-sizing:border-box;margin-top:5px;margin-right:0;height:160px;}
+	.sec_ul .sec_li_1{background:url(../images/sec_li_768_04.png) no-repeat center;}
+	.sec_ul .sec_li_2{background:url(../images/sec_li_768_04.png) no-repeat center;}
+	.sec_ul .sec_li_3{background:url(../images/sec_li_768_04.png) no-repeat center;}
+	.sec_ul .sec_li_4{background:url(../images/sec_li_768_04.png) no-repeat center;display:block}
+	.sec_ul li h4{display:block;}
+	.sec_ul li p{display:block;}
+	#footer{display:none;}
+	#footer_768{display:block;}
+	.flex-control-paging li a {float:left;margin:0 3px;width:20px;height:6px}
+	#footer_con{display:none;}
+	#index_out .out_ul{width:100%;text-align:center;border-bottom:1px solid #ccc;margin-bottom:60px;}
+	#index_out .out_ul li{width:100%}
+	#index_out .more_top{display:none;}
+	#index_out .more{display:none;}
+	#index_out .main h1{font-size:26px;color:#333;line-height:40px;padding-top:50px;font-weight:normal;}
+	#index_out .main h2{font-size:14px;color:#666;line-height:30px;padding-bottom:60px;font-weight:normal;}
+	#index_out .out_ul li:hover .img_1{background:url(../images/out_icon.png) no-repeat center;}
+	#index_out .out_ul li:hover .img_2{background:url(../images/out_icon_2.png) no-repeat center;}
+	#index_out .out_ul li:hover .img_3{background:url(../images/out_icon_3.png) no-repeat center;}
+	#index_out .out_ul li:hover .img_4{background:url(../images/out_icon_4.png) no-repeat center;}
+	#index_out .out_ul li:hover .img_5{background:url(../images/out_icon_5.png) no-repeat center;}
+	#index_out .out_ul li:hover p{color:#333;}
+	#index_out .out_ul p{font-size:20px;padding-top:20px;}
+	#index_out .out_ul p:last-child{font-size:16px;padding-top:10px;}
+	#index_tjt .main h1{font-size:26px;color:#333;line-height:40px;padding-top:50px;font-weight:normal;}
+	#index_tjt .main h2{font-size:14px;color:#666;line-height:30px;padding-bottom:40px;font-weight:normal;}
+	#index_tjt .main p{font-size:12px;line-height:18px;}
+	#index_tjt .main .image{padding:50px 0 100px;width:90%;padding-left:5%;padding-right:5%;border-bottom:1px solid #ccc;margin-bottom:60px;}
+	#index_tjt .img_2560{display:none;}
+	#index_tjt .img_768{display:inline-block;}
+	#index_hz .sec_bot{display:block;width:100%;margin-top:40px;margin-bottom:40px;}
+	#index_hz .sec_bot:after{content:"";clear:both;display:block;}
+	#index_hz .sec_bot .sec_bot_in{border-bottom:1px solid #ccc;}
+	#index_hz .sec_bot h2{font-size:28px;}
+	#index_hz .sec_bot p{font-size:18px;}
+	#index_hz .sec_bot ul{width:90%;padding:5%;}
+	#index_hz .sec_bot ul:after{content:"";clear:both;display:block;}
+	#index_hz .sec_bot li{width:48%;padding:1%;float:left;}
+	#index_hz .sec_bot li img{width:100%;height:auto;display:inline-block;}
+	}	

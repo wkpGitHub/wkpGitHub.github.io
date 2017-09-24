@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>首页</title>
+<link href="css/index.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/slider.js"></script>
+<script src="js/swiper.jquery.min.js"></script>
+<script>
+$(function(){
+	var bannerSlider = new Slider($('#banner_tabs'), {
+		time: 5000,
+		delay: 400,
+		event: 'click',
+		auto: true,
+		mode: 'fade',
+		controller: $('#bannerCtrl'),
+		activeControllerCls: 'active'
+	});
+	$('#banner_tabs .flex-prev').click(function() {
+		bannerSlider.prev()
+	});
+	$('#banner_tabs .flex-next').click(function() {
+		bannerSlider.next()
+	});
+	
+	})
+</script>
+</head>
+
+<body>
+<div id="index">
+	<div class="nav">
+    	<div class="nav_content">
+            <ul class="nav_ul">
+                <li class="logo">&nbsp;</li>
+                <li><a href="#" class="a_ac">首页</a></li>
+                <li><a href="#">招商入住</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">常见问题</a></li>
+            </ul>
+            <ul class="nav_phone">
+            	<li><a class="show_span">&nbsp;</a></li>
+                <li class="logo">&nbsp;</li>
+                <li>&nbsp;</li>
+            </ul>
+            <ul class="nav_bot">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">招商入住</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">常见问题</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="banner_tabs" class="flexslider swiper-container">
+        <ul class="slides swiper-wrapper">
+            <li class="swiper-slide">
+                <a title="" target="_blank" href="">
+                    <img  src="images/banner_phone_03.jpg" >
+                </a>
+            </li>
+            <li class="swiper-slide">
+                <a title="" target="_blank" href="">
+                    <img  src="images/banner_phone_03.jpg" >
+                </a>
+            </li>
+            <li class="swiper-slide">
+                <a title="" target="_blank" href="#">
+                    <img  src="images/banner_phone_03.jpg" >
+                </a>
+            </li>
+        </ul>
+		<ul class="flex-direction-nav">
+            <li><a class="flex-prev" href="javascript:;">Previous</a></li>
+            <li><a class="flex-next" href="javascript:;">Next</a></li>
+        </ul>
+        <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
+            <li class="active"><a>&nbsp;</a></li>
+            <li><a>&nbsp;</a></li>
+            <li><a>&nbsp;</a></li>
+        </ol>
+    </div>
+    <div class="section">
+    	<ul class="sec_ul">
+        	<li class="sec_li_1">
+            	<a href="index_out.html">
+                	<h4>淘境通跨境电商生态图</h4>
+                    <p>IMPORT-EXPORT BUSINESS <br />PROFILES OF TOJTO</p>
+                </a>
+            </li>
+        	<li class="sec_li_2">
+                <a href="index_tjt.html">
+                	<h4>还在为你的出口业务发愁吗?</h4>
+                    <p>DO YOU STILL WORRY ABOUT <br />THE EXPORT BUSINESS?</p>
+                </a>
+            </li>
+        	<li class="sec_li_3">
+                <a href="#">
+                	<h4 style="padding-top:30px;">我们的优势</h4>
+                    <p style="padding-top:10px;">ADVANTAGES</p>
+                </a>
+            </li>
+        	<li class="sec_li_4">
+                <a href="#">
+                	<h4 style="padding-top:30px;">合作伙伴</h4>
+                   <p style="padding-top:10px;">PARTNERS</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="sec_bot">
+    	<div class="sec_bot_in">
+        	<h2>合作伙伴</h2>
+            <p>PARTNERS</p>
+            <ul>
+            	<li><img src="./images/sec_bot_li_14.jpg" /></li>
+            	<li><img src="./images/sec_bot_li_16.jpg" /></li>
+            	<li><img src="./images/sec_bot_li_18.jpg" /></li>
+            	<li><img src="./images/sec_bot_li_20.jpg" /></li>
+            	<li><img src="./images/sec_bot_li_25.jpg" /></li>
+            	<li><img src="./images/sec_bot_li_26.jpg" /></li>
+            	<li><img src="./images/sec_bot_li_27.jpg" /></li>
+            	<li><img src="./images/sec_bot_li_28.jpg" /></li>
+            </ul>
+        </div>
+    </div>
+    <div id="footer">
+    	<div class="footer_in">
+        	<ul>
+            	<li>联系电话：400-168-6988</li>
+            	<li>邮箱：service@tojto.com</li>
+            	<li>官方QQ : 4001686988</li>
+            	<li style="width:155px;position:relative;cursor:pointer;">
+                    <span>官方微信</span>
+                    <div class="image_xx">
+                        <img src="./images/weixin_34.jpg" />
+                    </div>
+                </li>
+            </ul>
+            <p>&copy;淘境通 2016, 版权所有 浙ICP备14073754号-3</p>
+        </div>
+    </div>
+    <div id="footer_768">
+        <ul>
+            <li>联系电话：400-168-6988 </li>
+            <li>邮箱：service@tojto.com </li>
+            <li>官方&ensp;QQ : 4001686988 </li>
+        </ul>
+    	<div class="footer_in_768">
+            <img src="./images/footer_weixin_11.jpg" style="width:100%;height:auto;"/>
+            <p>官方微信</p>
+        </div>
+    </div>
+	<div id="footer_con">
+    	<div class="footer_con_bot">
+        	<p>联系我们</p>
+            <span id="footer_bot_span"></span>
+        </div>
+        <div class="footer_con">
+            <div class="footer_con_top">
+                <div style="padding:15px 10px;height:7px;"><span id="footer_top_span" style=""></span></div>
+                <div style="padding:10px 25px;">
+                    <h1>400-168-6988</h1>
+                    <p style="line-height:16px;color:#666;font-size:14px;margin-bottom:25px;">联系电话</p>
+                    <p style="margin-bottom:16px;"><img src="images/footer_con_top_07.png" /></p>
+                    <h2>4001686988</h2>
+                    <p style="margin-bottom:16px;"><img src="images/footer_con_top_11.png" /></p>
+                    <h2>service@tojto.com</h2>
+                </div>
+            </div>
+            <div class="footer_con_bot">
+                <p>联系我们</p>
+                <span id="footer_bot_span"></span>
+            </div>    
+        </div>
+    </div>
+</div>
+</body>
+</html>
