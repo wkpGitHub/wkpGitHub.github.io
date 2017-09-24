@@ -2,118 +2,152 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>个人主页</title>
-<link href="css/index.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script src="js/jquery.fancybox.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css" />
-<script type="text/javascript">
-$(function(){
-		$(window).scroll(function(){
-			if($(window).scrollTop()>100){
-				$('#top').fadeIn(1000)
-				}
-				else{
-					$('#top').fadeOut()
-					}
-			})
-	
-	$('#top').click(function(){
-		$('body,html').animate({scrollTop:0},1000)
-		return false
-		})
-	$('.fancybox').fancybox();
-	})
-</script>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>首页</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </head>
+<body class="indexPage">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">WEB前端</a>
+    </div>
 
-<body data-spy="scroll" data-target=".navbar">
-<header>
-	<div class="inner  navbar">
-    	<ul class="nav">
-        	<li><a href="#page0" >首页</a></li>
-        	<li><a href="#page1">简介</a></li>
-        	<li><a href="#page2">技能</a></li>
-        	<li><a href="#page3">作品</a></li>
-        	<li><a href="#page4">联系</a></li>
-        </ul>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">个人首页</a></li>
+        <li><a href="skillinfo.html">技能介绍</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">项目展示 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="webapp/index.html">移动端</a></li>
+            <li><a href="openEye/index.html">移动端2</a></li>
+            <li><a href="pc/index.html">pc端响应式</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
-</header>
-<section id="page0">
-	<div class="inner">
-    	<div class="pic">
-        	<img src="images/zhaopian1_03.png">
-            <h2>王康平</h2>
-            <p>ui设计师/本科</p>
-        </div>
-    </div>
-</section>
-<section id="page1">
-	<div class="inner">
-    	<div class="left">
-        	<div class="left_t"><img src="images/left_t_08.png"></div>
-        	<h3>简<br>介</h3>
-            <div class="left_b"><img src="images/left_t_08.png"></div>
-        </div>
-        <div class="right">
-        	<h4>个人简历</h4>
-            <p><span></span>一直想学计算机专业，无奈大学入取了最后一个经济学专业，天生喜欢操作计算机的我，一直在自学PS、Ai。大学毕业后就在一家四星级酒店上班，负责酒店网络后台维护、微信公众平台图文设计以及内部广告设计。<br>
-<span></span>一开始对于设计真的不是很精通，为提升自己的设计，2015年7月份辞掉了工作来到杭州，参加了火星时代UI视觉设计培训。对于设计而言原来它不仅仅是会软件操作那么简单,需要领会配色（如：大面积配色一般用同一色或邻近色，需要特别突出的部分用对比色或更甚用补色），需要掌握变化（点线面的搭配）。每一份作品完成过程中，更是需要细心和耐心。<br>
-<span></span>我为设计放弃了一切其他的人生爱好，专注于设计！人生就是一个不断成长的过程，虽然一开始我一直在模仿学习别人，但有一天我会成为一个拥有自己特色的设计师！</p>
-        </div>
-    </div>
-    <div class="clear"></div>
-</section>
-<section id="page2">
-	<div class="inner">
-    	<div class="left">
-        	<div class="left_t"><img src="images/left_t_08.png"></div>
-        	<h3>技<br>能</h3>
-            <div class="left_b"><img src="images/left_t_08.png"></div>
-        </div>
-        <div class="right"><img src="images/jineng_08.png"></div>
-    </div>
-    <div class="clear"></div>
-</section>
-<section id="page3">
-	<div class="inner">
-    	<div class="left">
-        	<div class="left_t"><img src="images/left_t_08.png"></div>
-        	<h3>作<br>品</h3>
-            <div class="left_b"><img src="images/left_t_08.png"></div>
-        </div>
-        <div class="right">
-        	<ul>
-            	<li><a class="a1 fancybox" href="images/a1-b_02.png" data-fancybox-group="gallery" title="网页设计首页"><img src="images/a1-s_02.png" alt="" /></a><a href="images/a2-b_02.png" class="a2 fancybox" data-fancybox-group="gallery"  title="网页设计内页"></a></li>
-            	<li><a href="images/a3-b.png" class="a3 fancybox" data-fancybox-group="gallery"  title="锁屏"></a><a href="images/a4-b.png" class="a4 fancybox" data-fancybox-group="gallery"  title="开锁"></a></li>
-            	<li><a href="images/a5-b.jpg" class="a5 fancybox" data-fancybox-group="gallery"  title="图标设计"></a><a href="images/a6-b.jpg" class="a6 fancybox" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet"></a></li>
-            	<li><a href="images/a7-b.jpg" class="a7 fancybox" data-fancybox-group="gallery"  title="Lorem ipsum dolor sit amet"></a><a href="images/a8-b.jpg" class="a8 fancybox"data-fancybox-group="gallery"  title="Lorem ipsum dolor sit amet"></a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="clear"></div>
-</section>
-<section id="page4">
-	<div class="inner">
-    	<div class="left">
-        	<div class="left_t"><img src="images/left_t_08.png"></div>
-        	<h3>联<br>系</h3>
-            <div class="left_b"><img src="images/left_t_08.png"></div>
-        </div>
-        <div class="right">
-        	<div class="right-inner">
-                <div class="left-top"><img src="images/left_top_18.png"></div>
-                <div class="left-bottom"><img src="images/left_bottom_18.png"></div>
-                <div class="right-top"><img src="images/right_top_18.png"></div>
-                <div class="right-bottom"><img src="images/right_bottom_18.png"></div>
-                <p>TEL:13656664232/18046620438<br>QQ:1441962654<br>Email:1441962654@qq.com</p>
-            </div>
-        </div>
-    </div>
-    <div class="clear"></div>
-</section>
-<footer><div class="inner"><p>Copyright © 2015 WKP Design all right Reserved</p></div></footer>
-<div id="top"><a href="#"><img src="images/to-top_18.png"></a></div>
+  </div>
+</nav>
+<div class="banner">
+  <h1>王康平</h1>
+  <h3>架构思想、移动+PC端、模块化开发，web前端工程师</h3>
+  <p></p>
+</div>
+<div class="session">
+  <h3>基本信息：</h3>
+  <table class="table table-bordered">
+    <tr>
+      <td>姓名：王康平</td>
+      <td>出生年月：1992-04</td>
+    </tr>
+    <tr>
+      <td>学历：本科</td>
+      <td>籍贯：江西上饶</td>
+    </tr>
+    <tr>
+      <td>手机：136-5666-4232</td>
+      <td>邮箱：1441962654@qq.com</td>
+    </tr>
+    <tr>
+      <td>微信：wkp13656664232</td>
+      <td>QQ：1441962654</td>
+    </tr>
+  </table>
+</div>
+<div class="session">
+  <h3>社会历程：</h3>
+  <pre>
+  1、2014年7月大学毕业，在一家四星级酒店从事广告设计功能，微信运营功能；
+  2、2015年7月来到杭州，因自己向往计算机方面的工作，培训于火星时代UI设计工作；
+  3、2015年12月，在上峰集团下一家互联网公司【世包网络科技有限公司】，就职UI设计并兼任前端岗位工作；
+  4、2016年8月，就职于【易途吧科技有限公司】，在设计和前端工作的对比下，我酷爱专研JavaScript，放弃设计工作，全身心投入前端工作；在公司担任移动端前端工程师职位；
+  5、2017年3月，就职于【大华股份有限公司】，掌握架构思想、模块开发、数据可视化；
+  </pre>
+</div>
+<div class="session">
+  <h3>能为贵公司做什么：</h3>
+  <pre>
+  【把浏览器交给前端，把服务器留给后端】
+  1、移动端页面：
+  【移动端上弃绝媒体查询不精准的做法】
+  采用获取屏幕宽度的方法，用js设置rem单位的大小；配合百分比，
+  做到和设计稿高匹配的精致页面；随着屏幕大小的变化，里面的页面结构(字体大小、图片宽高，等等)会
+  实时的发生等比例弹性变化；
+
+  2、pc端页面：
+  1)响应式自适应页面：
+  采用css媒体查询再引入两个js做法，让低版本浏览器也兼容媒体查询功能；
+
+  2)页面渲染、数据可视化和iframe页面嵌套
+  给我相应的请求接口和接口API说明，其他的页面渲染(dom元素操作)交给我来完成；
+  数据可视化，我采用的是echart2插件
+  熟练iframe页面嵌套，js不同层次页面元素获取交互；
+
+  3、pc端和移动端兼容响应式网站（不是用bootstrap）
+  第一种做法：js判断用户代理，确定设备类型，跳转相应的域名；
+  第二种做法：js判断用户代理，确定设备类型，引入相应的css文件和js文件；
+
+  4、关于微信小程序和Angular、vue、react；
+  微信小程序在公司做过具体的一个泰国接送机项目；
+  Angular、vue、react；对于Angular2涉及Es6，
+  我没有去学习；Angular1我几乎全面掌握，vue2、react也掌握；但这些工作中，由于要兼容ie7，
+  一直没有具体用上。对于花了两年的时间专研javascript的我，关于大多数js的框架，只需要看下API，
+  就能够上手完成它。
+
+  5、其他js框架：
+  在大华股份有限公司工作，其中js框架大半都是自己封装的，还有在其他框架上进一步封装的，我在
+  工作之余时间，其中2000行左右的js框架，我会深入源码，自己写出API和具体代码运作说明，留给自己以后用工作用；
+  习惯查看源码，了解框架的内部是如何嵌套联系的；过于复杂的上万行的js大框架，我表示没有那个精力
+  和能力全面解析出代码逻辑；有时候也自己封装一些小插件（播放时间轴、select下拉等等）
+
+  6、工作效率和处理问题能力：
+  1)工作效率：
+  可能因为是设计出身的，对于ps异常熟练；对于获取宽高和字体大小的值速度快；
+  结合一些其他的窍门；在几家公司中，都是编辑页面速度最快的(是快出很多，1.5倍以上)；
+
+  2)处理问题能力：
+  在小公司工作只有自己一个前端，遇到问题只能独立处理，自己查找资料，换位思考换一种觉得方案；
+  这样的好处是能一个人独当一面，坏处比较耗时；
+
+  在大公司是一个前端团队，遇到问题可以相互请教；好处是工作效率高，坏处是少了点思考；当然遇到
+  新问题，还是要自己独立思考，查找资料；
+
+  7、业务逻辑问题
+  一个成熟的前端不仅仅是会敲代码，而且会一开始审视设计稿，深入后端思考问题，
+  提出操作逻辑和业务逻辑不合理或者不可行的地方。以免最后到了后端才发现问题，
+  避免又从设计改设计稿开始重新做，然后又到前端又到后端一条线的工作量。
+  </pre>
+</div>
+<div class="session">
+  <h3>技能简介：</h3>
+  <pre>
+  1、精通HTML5、CSS3、javascript、jquery、jquery-easeui、echart2；
+  2、熟练angular、vue、react，微信小程序；
+  3、掌握nodejs、bootstrap、jquery-mobile、jquery-UI、validation、多种日期控件等等；
+  4、擅长编写移动端rem自适应页面，pc端ie7以上兼容，pc端自适应页面，pc端和移动端兼容页面；
+  5、懂得前后端交互原理，会使用myEclipse、Tomcat、mySqL，略懂点php；
+  6、会调用百度图片搜索、百度地图、百度分享、爱奇艺视频、优酷视频等接口；
+  更多详细技术问题，请看上面导航【技能介绍】
+  </pre>
+</div>
+<div class="session">
+  <h3>最后的话：</h3>
+  <pre>
+  我不是混饭吃的人，我是求上进，有自己思考，和规划的人。
+  在层出不穷的js框架中，我是有选择性，组合性学习；
+  在代码架构和模块上思考，因为在事业上是个有雄心的人。
+  如果我的能力、认知和薪资符合贵公司，请联系我。
+  </pre>
+</div>
 </body>
 </html>

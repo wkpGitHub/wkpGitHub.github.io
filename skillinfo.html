@@ -1,0 +1,320 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>首页</title>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</head>
+<body class="indexPage">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">WEB前端</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.html">个人首页</a></li>
+        <li><a href="skillinfo.html">技能介绍</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">项目展示 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="webapp/index.html">移动端</a></li>
+            <li><a href="openEye/index.html">移动端2</a></li>
+            <li><a href="pc/index.html">pc端响应式</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="session">
+  <h3>代码规范：</h3>
+  <pre>
+  【html部分：】
+  1)严格遵守Tab键缩进格式，让代码层次清晰;
+  2)使用语义化标签；
+  3)规范的class命名；
+  4)大板块的注释；
+
+  &lt;!-- 头部导航 --&gt;
+  &lt;div class="header"&gt;
+    &lt;ul class="nav"&gt;
+      &lt;li&gt;
+        &lt;a href="javascript:;"&gt;首页&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;a href="javascript:;"&gt;产品&lt;/a&gt;
+        &lt;ul class="sub_nav"&gt;
+          &lt;li&gt;
+            &lt;a href="javascript:;"&gt;软件产品&lt;/a&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;a href="javascript:;"&gt;硬件产品&lt;/a&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;a href="javascript:;"&gt;成就&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;a href="javascript:;"&gt;我们&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+
+  &lt;!-- 中间内容区域 --&gt;
+  &lt;div class="main"&gt;
+    &lt;div class="banner"&gt;&lt;/div&gt;
+    &lt;div class="session"&gt;
+      &lt;h1&gt;标题&lt;/h1&gt;
+      &lt;p&gt;文字说明&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- 底部 --&gt;
+  &lt;div class="footer"&gt;&lt;/div&gt;
+
+
+
+  【css部分：】
+  1)每个样式采用标准换行方式；
+  *{
+    padding:0;
+    margin:0;
+  }
+  .nav{
+    width:1200px;
+    height:40px;
+    margin:0 auto;
+  }
+
+
+  【js部分：】
+  1)严格遵守Tab键缩进格式，让代码层次清晰;
+  2)javascript规范空格缩进写法；
+  3)必要的注释,参数说明；
+  4)规范分号结束语句，利于后期压缩；
+
+  var models = (function () {
+    
+    return {
+      init: function () {
+        this.eventBind();
+      },
+
+      //页面事件绑定
+      eventBind: function () {
+        ...
+      },
+
+      /*
+       * 高度自适应函数
+       * @param {string} _height 要调整的高度
+       * @return {number}
+       */
+      autoHeight: function (_height) {
+        if (typeof _height === 'undefind') {
+          _height = 0;
+        }
+        return document.documentElement.clientHeight - _height;
+      }
+    } 
+  })();
+  </pre>
+</div>
+<div class="session">
+  <h3>性能和兼容性说明：</h3>
+  <pre>
+  【html性能和兼容：】
+
+  html部分只有图片加载上遇到性能问题，
+  特别是在移动端，网速相对pc端较慢；采用图片懒加载方式，滑动到
+  相应的位置，开始加载显示相应位置的图片；
+  轮播大图采用css背景图片的写法，让它优先加载；
+
+  兼容上，只有placeholder属性，需要js方法兼容低版本的浏览器；
+
+
+
+  【css兼容和性能：】
+
+  样式分公用样式和私有样式：
+  公用样式写在common.css里面；
+
+  私有样式，写在具体的对应的css文件里，私有样式我一层层套的很紧密，
+  以防后期改样式，会不知不觉改动到其他页面；
+
+  css我能兼容到ie7+；
+  css3不兼容ie7和ie8，我会分别用ie的hack写法，采用另一种样式做兼容；
+  背景图标采用雪碧图，防止鼠标经过闪屏；
+
+
+
+  【js性能和兼容性说明：】
+
+  1)js代码习惯采用单例模式，一个js文件只有一个全部变量；
+  2)返回接口，可以提高其他js文件调用：models.autoHeight()；
+  var models = (function () {
+    //局部变量
+    var _str = '';
+    var fn = function () {
+
+    }
+
+    return {
+      init: function () {
+        this.eventBind();
+      },
+
+      //页面事件绑定
+      eventBind: function () {
+        ...
+      },
+
+      /*
+       * 高度自适应函数
+       * @param {number} _height 要调整的高度
+       * @return {number}
+       */
+      autoHeight: function (_height) {
+        if (typeof _height === 'undefind') {
+          _height = 0;
+        }
+        return document.documentElement.clientHeight - _height;
+      }
+    } 
+  })();
+
+  3)采用惰性模式，提高性能，例如：
+
+  //事件绑定兼容，通常程序员写法：
+  var addEvent = function (dom, type, fn) {
+    if (window.addEventListener) {
+      dom.addEventListener(type, fn, false);
+    } else if (window.attachEvent) {
+      dom.attachEvent('on' + type, fn);
+    } else {
+      dom['on' + type] = fn;
+    }
+  }
+
+  //我的高性能写法：
+  var addEvent = (function (dom, type, fn) {
+    if (window.addEventListener) {
+      return function (dom, type, fn) {
+        dom.addEventListener(type, fn, false);
+      }
+    } else if (window.attachEvent) {
+      return function (dom, type, fn) {
+        dom.attachEvent('on' + type, fn);
+      }
+    } else {
+      return function (dom, type, fn) {
+        dom['on' + type] = fn;
+      }
+    }
+  })();
+
+
+  4)采用函数节流方式提高性能，例如：
+
+  //窗口大小改变时，调整&lt;div id="J_height"&gt;&lt;/div&gt;的高度
+  function economize(methods) {
+    clearTimeout(methods.tId);
+    methods.tId = setTimeout(function () {
+      methods();
+    },100)
+  }
+
+  addEvent(window, 'resize', function () {
+    economize(function () {
+      var _height = document.documentElement.clientHeight;
+      document.getElementById('J_height').style.height = _height + 'px';
+    });
+  });
+
+
+  5)其他技巧：增加dom元素时，讲所有的元素按字符串形式拼接好，一次性插入dom元素，
+  避免重复操作dom节点：
+  var htmlStr = '';
+  for (var i=0,len=data.length; i < len; i++) {
+    htmlStr += '&lt;li class="item"&gt;'+ data[i].item +'&lt;/li&gt;'
+  }
+  $('ul').html(htmlStr);
+
+  工作中遇到一次性实例化几百个下拉框对象实例，在低版本ie下，需要10秒左右，导致页面卡顿；
+  我想到两种解决：
+  1、采用瀑布流方式，滚动到底部再分页加载的方式；
+  2、先不实例化下拉框对象；鼠标经过哪一个下拉框，再实例化（鼠标经过在前面，点击在后面）；
+     这样点击的时候，已经实例化好了，可以用了；
+
+   具体的性能问题，工作中会具体分析
+  </pre>
+</div>
+<div class="session">
+  <h3>能为贵公司做什么：</h3>
+  <pre>
+  【把浏览器交给前端，把服务器留给后端】
+  1、移动端页面：
+  【移动端上弃绝媒体查询不精准的做法】
+  采用获取屏幕宽度的方法，用js设置rem单位的大小；配合百分比，
+  做到和设计稿高匹配的精致页面；随着屏幕大小的变化，里面的页面结构(字体大小、图片宽高，等等)会
+  实时的发生等比例弹性变化；
+
+  2、pc端页面：
+  1)响应式自适应页面：
+  采用css媒体查询再引入两个js做法，让低版本浏览器也兼容媒体查询功能；
+
+  2)页面渲染、数据可视化和iframe页面嵌套
+  给我相应的请求接口和接口API说明，其他的页面渲染(dom元素操作)交给我来完成；
+  数据可视化，我采用的是echart2插件
+  熟练iframe页面嵌套，js不同层次页面元素获取交互；
+
+  3、pc端和移动端兼容响应式网站（不是用bootstrap）
+  第一种做法：js判断用户代理，确定设备类型，跳转相应的域名；
+  第二种做法：js判断用户代理，确定设备类型，引入相应的css文件和js文件；
+
+  4、关于微信小程序和Angular、vue、react；
+  微信小程序在公司做过具体的一个泰国接送机项目；
+  Angular、vue、react；对于Angular2涉及Es6，
+  我没有去学习；Angular1我几乎全面掌握，vue2、react也掌握；但这些工作中，由于要兼容ie7，
+  一直没有具体用上。对于花了两年的时间专研javascript的我，关于大多数js的框架，只需要看下API，
+  就能够上手完成它。
+
+  5、其他js框架：
+  在大华股份有限公司工作，其中js框架大半都是自己封装的，还有在其他框架上进一步封装的，我在
+  工作之余时间，其中2000行左右的js框架，我会深入源码，自己写出API和具体代码运作说明，留给自己以后用工作用；
+  习惯查看源码，了解框架的内部是如何嵌套联系的；过于复杂的上万行的js大框架，我表示没有那个精力
+  和能力全面解析出代码逻辑；有时候也自己封装一些小插件（播放时间轴、select下拉等等）
+
+  6、工作效率和处理问题能力：
+  1)工作效率：
+  可能因为是设计出身的，对于ps异常熟练；对于获取宽高和字体大小的值速度快；
+  结合一些其他的窍门；在几家公司中，都是编辑页面速度最快的(是快出很多，1.5倍以上)；
+
+  2)处理问题能力：
+  在小公司工作只有自己一个前端，遇到问题只能独立处理，自己查找资料，换位思考换一种觉得方案；
+  这样的好处是能一个人独当一面，坏处比较耗时；
+
+  在大公司是一个前端团队，遇到问题可以相互请教；好处是工作效率高，坏处是少了点思考；当然遇到
+  新问题，还是要自己独立思考，查找资料；
+
+  7、业务逻辑问题
+  一个成熟的前端不仅仅是会敲代码，而且会一开始审视设计稿，深入后端思考问题，
+  提出操作逻辑和业务逻辑不合理或者不可行的地方。以免最后到了后端才发现问题，
+  避免又从设计改设计稿开始重新做，然后又到前端又到后端一条线的工作量。
+  </pre>
+</div>
+</body>
+</html>

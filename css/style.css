@@ -1,0 +1,30 @@
+*{padding:0;margin:0}
+li{list-style:none;}
+a{text-decoration:none;}
+body,html{height:100%;}
+body{font-size:0.26rem;}
+a,button,input,textarea,label{-webkit-tap-highlight-color: rgba(0,0,0,0) }
+a,input,button,img,textarea{outline:none;}
+.center{text-align: center;}
+.right{float: right;}
+.banner{
+	height: 300px;
+	background: #6f5499;
+	text-align: center;
+	color: #fff;
+}
+.navbar-default.navbar{
+	margin-bottom: 0;
+}
+.banner h1{
+	margin-top: 0;
+	padding-top: 50px;
+	font-weight: bold;
+	font-size: 48px;
+}
+.indexPage .session{
+	padding: 0 10px;
+}
+.indexPage .jumbotron{
+	padding:10px;
+}
