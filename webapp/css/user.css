@@ -1,0 +1,250 @@
+@charset "utf-8";
+
+html, body, div, span, applet, object, iframe, caption, 
+tfoot, thead,  th,  del, dfn, em, font, img, ins, 
+kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, 
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, 
+acronym, address, big, cite, code, dl, dt, dd, ol, ul, li, 
+fieldset, form, label, legend { 
+    vertical-align: baseline; 
+    font-family: inherit; 
+    font-weight: inherit; 
+    font-style: inherit; 
+    font-size: 100%; 
+    outline: 0; 
+    padding: 0; 
+    margin: 0; 
+    border: 0; 
+} 
+
+a,button,input,textarea,label{
+-webkit-tap-highlight-color: rgba(0,0,0,0) 
+}
+::-webkit-input-placeholder{
+	color:#999;
+}
+:focus { 
+    outline: 0; 
+} 
+ol, ul { 
+    list-style: none; 
+} 
+table { 
+    border-collapse: separate; 
+    border-spacing: 0; 
+} 
+caption, th, td { 
+    font-weight: normal; 
+    text-align: left; 
+} 
+blockquote:before, blockquote:after, q:before, q:after { 
+    content: “”; 
+} 
+blockquote, q { 
+    quotes: “” “”; 
+}
+
+a{
+    text-decoration: none;
+    color:#333
+}
+body,html{
+    font-family: "Microsoft YaHei";
+    background-color: #f1f1f1;
+    color:#333;
+    height: 100%;
+    min-width: 320px;
+    line-height: 1;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+em,i{
+    font-style: normal;
+}
+img{
+    display: block;
+}
+/* ***************************清除默认样式****************************** */
+#user header{
+    height: 0.8rem;
+    width: 100%;
+    background-color: #1e2e4d;
+    color:#fff;
+    font-size: 0.36rem;
+    text-align: center;
+    line-height: 0.8rem;
+    position: relative;
+}
+#user header a{
+    display: block;
+    width: 0.8rem;
+    height: 0.8rem;
+    position: absolute;
+    left:0;
+    top:0;
+    background-image: url(../images/close.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.28rem 0.28rem;
+}
+#user.reset-psw header a{
+    background:none;
+    font-family: 宋体;
+    color:#fff;
+    text-align: left;
+}
+#user #wrapper{
+    overflow: hidden;
+}
+#user #wrapper .form ul{
+    padding:0 0.3rem;
+    border-top:solid 1px #dededf;
+    border-bottom: solid 1px #dededf;
+    font-size: 0.28rem;
+    margin-top: 0.3rem;
+    background-color: #fff;    
+}
+#user #wrapper .form ul li{
+    height: 0.98rem;
+    line-height: 0.98rem;
+    border-top: solid 1px #dededf;
+    overflow: hidden;
+}
+#user #wrapper .form ul li.first{
+    border-top: none;
+}
+@media screen and (-webkit-min-device-pixel-ratio: 2){
+    #user #wrapper .form ul{
+        border:none;
+        background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,#dededf),to(#dededf)),-webkit-gradient(linear,left top,left bottom,color-stop(0.5,transparent),color-stop(0.5,#dededf),to(#dededf));
+        background-position: top,bottom;
+        background-repeat: no-repeat;
+        background-size: 100% 1px;
+        padding:1px 0.3rem;    
+    }
+    #user #wrapper .form ul li{
+        border-top: none;
+        background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,#dededf),to(#dededf));
+        background-size: 100% 1px;
+        background-repeat: no-repeat;
+        background-position: left top;
+        padding-top: 1px;        
+    }
+    #user #wrapper .form ul li.first{
+        background-image: none;
+    }    
+}
+#user #wrapper .form ul li .fields{
+    float: left;
+    width: 1.3rem;
+    text-align: justify;
+    text-align-last:justify;
+    -webkit-text-align-last:justify;
+}
+#user #wrapper .form ul li .fields:after{
+    content: ".";
+    display: inline-block; 
+    width: 100%;
+    overflow: hidden;
+    height: 0;    
+}
+#user #wrapper .form ul li .input-area{
+    float: right;
+    width: 5.2rem;
+}
+#user #wrapper .form ul li .input-area input{
+    padding:0;
+    margin:0;
+    width: 3.2rem;
+    font-size: 0.26rem;
+    border:none;
+    font-family: 微软雅黑;
+}
+#user #wrapper .form ul li .phone-number a{
+    display: inline-block;
+    margin-right: 0.1rem;
+}
+#user #wrapper .form ul li .yzm span{
+    display: inline-block;
+    width: 1.8rem;
+    height: 0.6rem;
+    background-color: #f2f2f2;
+    line-height: 0.6rem;
+    text-align: center;
+    border-radius: 0.3rem;
+    color:#999;
+    font-size: 0.26rem;
+}
+#user #wrapper .form .submit{
+    padding:0 0.3rem;
+}
+#user #wrapper .form .submit button{
+    width: 100%;
+    margin:0;
+    padding:0;
+    display: block;
+    border:none;
+    background-color: #c6e6ff;
+    height: 0.9rem;
+    border-radius: 5px;
+    margin-top: 0.6rem;
+    color:#fff;
+    font-size: 0.34rem;
+    font-family: 微软雅黑
+}
+#user #wrapper .form .submit button:active{
+    background-color: #A1D1F7;
+}
+#user footer{
+    position: fixed;
+    left:0;
+    bottom: 0.5rem;
+    font-size: 0.26rem;
+    color:#666;
+    text-align: center;
+    width: 100%;
+}
+#user footer a{
+    display: inline-block;
+    color:#3da3ff;
+    font-size: 0.28rem;
+    border-bottom: solid 1px #3da3ff;
+    padding-bottom: 3px;
+    margin:0 3px;
+}
+/* **************************以下用户登录CSS************************** */
+.login #wrapper .tab{
+    background-color: #fff;
+    height: 1rem;
+}
+.login #wrapper .tab ul li{
+    display: -webkit-box;
+    box-sizing: border-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+    height: 1rem;
+    width: 50%;
+    float: left;
+    font-size: 0.3rem;
+    text-align: center;
+    border-bottom: solid 2px transparent
+}
+.login #wrapper .tab ul li.active{
+    border-bottom: solid 2px #3da3ff;
+}
+#user.login #wrapper .form{
+    display: none;
+}
+#user.login #wrapper .form.show{
+    display: block;
+}
+#user #wrapper .forget-psw{
+    margin-top: 0.3rem;
+    padding:0 0.3rem;
+    text-align: right;
+}
+#user #wrapper .forget-psw a{
+    font-size: 0.26rem;
+    color:#666;
+    display: block;
+    float: right;
+}

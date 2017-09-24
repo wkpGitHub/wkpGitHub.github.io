@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>待付款详情</title>
+<link href="css/person.css" rel="stylesheet" type="text/css">
+<script src="js/jquery1-11-1.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+</head>
+
+<body id="per_wait_pay_de">
+<div id="nav_top">
+	<a href="javascript:history.back()" class="go_back"></a>
+    <span class="left_center">订单详情</span>
+    <a href="#" class="link_wait">咨询客服</a>
+</div>
+<p class="order">
+	<span>订单号</span>
+    <span>jj－20160204-123456</span>
+    <a href="#">联系司导</a>
+</p>
+<div class="head_top">
+	<p class="head_jc">萧山国际机场t3(cn56)</p>
+	<p class="head_bot head_hr">杭州市滨江区六和路368号海外高层次人才创新</p>
+	<p class="head_jd">萧山国际机场酒店</p>
+	<p class="head_bot">杭州市滨江区六和路368号海外高层次人才创新</p>
+</div>
+<ul class="order_list">
+	<li>
+    	<span>产品类型</span>
+    	<span class="mid">接机／送机／包车游</span>
+        <span class="right f60">待付款</span>
+    </li>
+	<li>
+    	<span>用车时间</span>
+    	<span class="mid">2016-12-22  15:30</span>
+    </li>
+	<li>
+    	<span>下单时间</span>
+    	<span class="mid">2016-12-22  15:30</span>
+    </li>
+	<li>
+    	<span>车型人数</span>
+    	<span class="mid">舒适型5座  2车  共8人</span>
+    </li>
+	<li>
+    	<span>举牌内容</span>
+    	<span class="mid">姓名wuyaqin</span>
+    </li>
+	<li>
+    	<span>订单金额</span>
+    	<span class="mid f60">500000元</span>
+        <span class="right"><a href="#" class="detail">明 细</a></span>
+    </li>
+	<li>
+    	<span>支付方式</span>
+    	<span class="mid">微信支付</span>
+    </li>
+</ul>
+<ul class="order_list">
+	<li>
+    	<span>取消原因</span>
+    	<span class="mid">行程有变取消用车</span>
+    </li>
+	<li>
+    	<span>退款金额</span>
+    	<span class="mid">500000元</span>
+    </li>
+	<li>
+    	<span>取消时间</span>
+    	<span class="mid">2016-12-22  15:30</span>
+    </li>
+</ul>
+<ul class="order_list">
+	<li>
+    	<span>司机信息</span>
+    	<span class="mid">吴雅琴  13626710891</span>
+    </li>
+	<li>
+    	<span>乘客信息</span>
+    	<span class="mid">吴雅琴  13626710891</span>
+    </li>
+</ul>
+<ul class="order_list order_mess">
+	<li>
+    	<span>夜间服务</span>
+    	<span class="mid">最晚2016-06-22 14:22:30前确认订单并生
+成乘车凭证，请按照详情也的凭证指示用车。</span>
+    </li>
+	<li>
+    	<span>夜间服务</span>
+    	<span class="mid">夜间服务费：若实际上车时间为22:00-07:00，泰国、越南、印尼、台湾、马来西亚、新加坡地区每单另外加收<font class="f60">50RMB</font>，其他地区加收100RMB。<br>
+        超时费：司机会关注航班动态，航班抵达后最长
+免费等候90分钟。超过免费等待时间而未联系
+上您，司机将无法继续等待，订单费用无法退
+还；若超过免费等待时间仍需司机继续等待，
+泰国、越南、印尼、台湾、韩国、日本、马来
+西亚、新加坡地区<font class="f60">100RMB／小时</font>，其他国家
+和地区收取<font class="f60">200RMB／小时</font>。请将以上费用当
+面付清给司机。面付金额不能提供发票。<br>
+		部分国家对于儿童座椅的使用有严格规定，若有携带
+        </span>
+    </li>
+	<li>
+    	<span>取消规则</span>
+    	<span class="mid">北京时间2016-06-22 09:18前可免费取消，超过此时间取消将收取订单全额损失。</span>
+    </li>
+</ul>
+<div class="pay_can">
+	<a href="#" class="cancel">取消</a>
+	<a href="pay.html" class="pay">去支付</a>
+</div>
+
+
+<!--接机/包车明细-->
+<div id="pop_de" class="left_center" style="display:none">
+	<h1>费用明细<span id="hide_pop_de"></span></h1>
+   <!-- 接机明细-->
+    <div class="air_de" style="display:none">
+        <ul class="top_ul">
+            <li>
+                <span>套 餐 费</span>
+                <span class="f60">¥800</span>
+            </li>
+            <li>
+                <span>超里程数</span>
+                <span>5公里</span>
+                <span class="f60">¥800</span>
+            </li>
+            <li>
+                <span>举牌接机</span>
+                <span class="f60">¥0</span>
+            </li>
+        </ul>
+        <p class="head">
+            <span>儿童座椅</span>
+            <span class="f60">¥800</span>
+        </p>
+        <ul class="child_ul">
+            <li>
+                <span>0-1岁</span>
+                <span>0人</span>
+                <span class="f60">¥0</span>
+            </li>
+            <li>
+                <span>1-4岁</span>
+                <span>2人</span>
+                <span class="f60">¥50</span>
+            </li>
+            <li>
+                <span>4-7岁</span>
+                <span>2人</span>
+                <span class="f60">¥50</span>
+            </li>
+            <li>
+                <span>7-12岁</span>
+                <span>0人</span>
+                <span class="f60">¥0</span>
+            </li>
+            <li class="sum">
+                <span>合计</span>
+                <span class="f60">¥800</span>
+            </li>
+        </ul>
+        <p class="head">
+            <span>套餐价包含</span>
+        </p>
+        <p class="head_con">行驶费、司机代驾服务费、车辆使用费、车辆燃油费、夜间服务费、进城费、司机小费等；无须支付以上列表中列出以外的费用。</p>
+        <p class="head">
+            <span>套餐价不包含</span>
+        </p>
+        <p class="head_con">超时等候费：司机免费等待30分钟， 超过免费等候时间需向司机当面支付超时等候费<font class="f60">200rmb／小时</font>。</p>
+        <p class="footer">注：如产生以上超出费用项请在服务结束后，将钱面付司机。</p>
+    </div>
+    <!-- 接机明细结束-->
+   
+    <!--包车明细-->
+    <div class="car_de" style="display:none">
+        <ul class="top_ul">
+            <li>
+                <span>套 餐 费</span>
+                <span class="f60">¥800</span>
+            </li>
+        </ul>
+        <p class="head">
+            <span>儿童座椅</span>
+            <span class="f60">¥800</span>
+        </p>
+        <ul class="child_ul">
+            <li>
+                <span>0-1岁</span>
+                <span>0人</span>
+                <span class="f60">¥0</span>
+            </li>
+            <li>
+                <span>1-4岁</span>
+                <span>2人</span>
+                <span class="f60">¥50</span>
+            </li>
+            <li>
+                <span>4-7岁</span>
+                <span>2人</span>
+                <span class="f60">¥50</span>
+            </li>
+            <li>
+                <span>7-12岁</span>
+                <span>0人</span>
+                <span class="f60">¥0</span>
+            </li>
+            <li class="sum">
+                <span>合计</span>
+                <span class="f60">¥800</span>
+            </li>
+        </ul>
+        <p class="head">
+            <span>套餐价包含</span>
+        </p>
+        <p class="head_con">套餐价包含<font color="#f60">（10小时600公里）／天x3天</font> 行驶费、司机代驾服务费、车辆使用费、车辆燃油费、夜间服务费、进城费、司机小费。</p>
+        <p class="head">
+            <span>套餐价不包含</span>
+        </p>
+        <p class="head_con">超时长费：当天用车总时长超时10小时后，乘客主动要求增加用车时长，将按<font color="#f60">800元／小时</font>标准收取超时长费。</p>
+        <p class="footer">注：如产生以上超出费用项请在服务结束后，将钱面付司机。</p>
+    </div>
+    <!--包车明细结束-->
+</div>
+<div id="pop_de_bj"></div>
+<!--接机/包车明细结束-->
+<script>
+$(".detail").click(function(e) {
+    $("#pop_de_bj,#pop_de,.air_de").show()
+});
+$("#hide_pop_de").click(function(e) {
+    $("#pop_de_bj,#pop_de,.air_de").hide()
+});
+</script>
+</body>
+</html>

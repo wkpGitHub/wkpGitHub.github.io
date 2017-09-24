@@ -1,0 +1,373 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>全部订单</title>
+<link href="css/person.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/common.js"></script>
+<script src="js/jquery1-11-1.js"></script>
+<script>
+$(function(){
+	function getQueryString(name) {  
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");  
+		var r = window.location.search.substr(1).match(reg);  
+		if (r != null) return unescape(r[2]);  
+		return null;  
+	}  
+	var orderId=getQueryString("orderId");
+	$("#per_nav_ul li").eq(orderId).find("a").addClass("cur");
+	$(".orderPage").eq(orderId).show();
+	$("#per_nav_ul a").click(function(e) {
+        $("#per_nav_ul a").removeClass("cur");
+		$(this).addClass("cur");
+		$("#all_order,#wait_cur,#wait_eval,#wait_pay,#wait_waite").hide();
+		$($(this).attr("xhref")).show();
+		return false;
+    });
+	})
+</script>
+</head>
+
+<body bgcolor="f1f1f1">
+<div id="nav_top">
+	<a href="javascript:history.back()" class="go_back"></a>
+    <span class="left_center">全部订单</span>
+    <a href="#" class="link_wait" id="waiter">咨询客服</a>
+</div>
+<ul id="per_nav_ul">
+	<li><a xhref="#all_order">全部</a></li>
+	<li><a xhref="#wait_pay">待付款</a></li>
+	<li><a xhref="#wait_waite">待服务</a></li>
+	<li><a xhref="#wait_cur">服务中</a></li>
+	<li><a xhref="#wait_eval">待评价</a></li>
+</ul>
+<div style="height:0.98rem"></div>
+<!--有订单显示-->
+<div id="all_order" class="orderPage" style="display:none;">
+    <ul id="per_main">
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f60">待支付</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+                <a href="pay.html" class="go_pay">去支付</a>
+                <a href="per_cancel_order.html">取消订单</a>
+            </p>
+        </li>
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f60">已付款</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+                <a href="per_cancel_order.html">取消订单</a>
+            </p>
+        </li>
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f60">交易成功</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+                <a href="per_anno_eval.html" class="go_eval">评价</a>
+            </p>
+        </li>
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f32b">服务中</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+            </p>
+        </li>
+    </ul>
+</div>
+<!--待支付-->
+<div id="wait_pay" style="display:none;" class="orderPage">
+    <ul id="per_main">
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f60">待支付</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+                <a href="pay.html" class="go_pay">去支付</a>
+                <a href="per_cancel_order.html">取消订单</a>
+            </p>
+        </li>
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f60">待支付</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+                <a href="pay.html" class="go_pay">去支付</a>
+                <a href="per_cancel_order.html">取消订单</a>
+            </p>
+        </li>
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f60">待支付</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+                <a href="pay.html" class="go_pay">去支付</a>
+                <a href="per_cancel_order.html">取消订单</a>
+            </p>
+        </li>
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f60">待支付</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+                <a href="pay.html" class="go_pay">去支付</a>
+                <a href="per_cancel_order.html">取消订单</a>
+            </p>
+        </li>
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f60">待支付</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+                <a href="pay.html" class="go_pay">去支付</a>
+                <a href="per_cancel_order.html">取消订单</a>
+            </p>
+        </li>
+    </ul>
+</div>
+<!--待服务-->
+<div id="wait_waite" style="display:none;" class="orderPage">
+    <ul id="per_main">
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f60">已付款</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+                <a href="#">取消订单</a>
+            </p>
+        </li>
+    </ul>
+</div>
+<!--服务中-->
+<div  id="wait_cur" style="display:none;" class="orderPage">
+    <ul id="per_main">
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f32b">服务中</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+            </p>
+        </li>
+    </ul>
+</div>
+<!--待评价-->
+<div id="wait_eval" style="display:none;" class="orderPage">
+    <ul id="per_main">
+        <li>
+            <p class="main_top">2016-06-22  12:00<span class="f60">交易成功</span></p>
+            <div class="li_mid">
+                <a href="per_wait_pay_detail.html">
+                    <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                    <div class="image_r">
+                        <h2>萧山国际机场－萧山国际机场</h2>
+                        <p>
+                            <span class="just">订 单 号</span>
+                            <span>32736202328</span>
+                        </p>
+                        <p>
+                            <span class="just">用车时间</span>
+                            <span>2016-06-22 14:00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <p class="main_bot">
+                <span class="f60">金额<big>￥2000</big></span>
+                <a href="per_anno_eval.html" class="go_eval">评价</a>
+            </p>
+        </li>
+    </ul>
+</div>
+<div id="bottom_de">
+	<span class="left_center">没有了</span>
+</div>
+<!--有订单显示结束-->
+
+
+<!--没有订单显示-->
+<div id="no_order">
+	<div class="image"><img src="images/per_no_order_03.png"></div>
+    <p>您暂时还没有相关的订单～</p>
+    <a href="#">随便看看</a>
+</div>
+<!--没有订单显示结束-->
+
+
+<!--没有网络下显示-->
+<div id="no_network">
+	<div class="image"><img src="images/no_network_03.png"></div>
+    <p>呃，网络不给力，请点击屏幕重新加载～</p>
+</div>
+<!--没有网络下显示结束-->
+</body>
+</html>

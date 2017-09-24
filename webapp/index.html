@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>首页</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="css/common.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.event.drag-1.5.min.js"></script>
+<script type="text/javascript" src="js/jquery.touchSlider.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/fx.js"></script>
+<script type="text/javascript" src="js/fx_methods.js"></script>
+<script type="text/javascript" src="js/touch.js"></script>
+</head>
+<body>
+<div id="wrapper" class="index">
+	<div class="header">
+		<div class="logo">
+		</div>
+		<div class="slogan">
+			你和世界的故事从这里开始
+		</div>
+	</div>
+	<div class="download-app">
+		<div class="close-btn"></div>
+		<div class="logo">
+			<img src="images/t_logo_01.png" alt="" width="80" height="30">
+		</div>
+		<div class="download-btn">
+			<a href="">下载app</a>
+		</div>
+	</div>
+	<div class="banner">
+		<div class="search-area">
+			<div class="inputbox">
+				<input type="text" id="search-input">
+				<label for="search-input"><img src="images/search.png" alt="" width="14" height="14">输入你想去的境外城市</label>
+			</div>
+		</div>
+		<ul>
+			<li><img src="images/banner_01.jpg" alt=""></li>
+			<li><img src="images/banner_02.jpg" alt=""></li>
+			<li><img src="images/banner_03.jpg" alt=""></li>
+		</ul>
+		<div class="btn-box">
+			<span class="cur"></span>
+			<span></span>
+			<span></span>
+		</div>
+		<div id="prev">1</div>
+		<div id="next">2</div>
+	</div>
+	<div class="navbar">
+		<ul>
+			<li>
+				<a href="jiesongji.html" rel='external'>
+					<img src="images/nav_01.png" alt="" width="40" height="40">
+					<p>接送机</p>					
+				</a>
+			</li>
+			<li>
+				<a href="baocheyou.html" rel='external'>
+					<img src="images/nav_02.png" alt="" width="40" height="40">
+					<p>包车游</p>					
+				</a>
+			</li>
+			<li>
+				<a href="dancijiesong.html" rel='external'>
+					<img src="images/nav_03.png" alt="" width="40" height="40">
+					<p>单次接送</p>					
+				</a>
+			</li>
+			<li>
+				<a href="localplay/localplay.html">
+					<img src="images/nav_04.png" alt="" width="40" height="40">
+					<p>当地玩乐</p>					
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="hot baoche">
+		<div class="title">
+			<h2>热门包车游</h2>
+			<a href="hot-baoche.html" class="more">MORE ></a>
+		</div>
+		<ul>
+			<li><a href="baocheyou.html"><img src="images/baoche_01.png" alt=""></a></li>
+			<li><a href="baocheyou.html"><img src="images/baoche_02.png" alt=""></a></li>
+			<li><a href="baocheyou.html"><img src="images/baoche_03.png" alt=""></a></li>
+		</ul>
+	</div>
+	<div class="hot baoche">
+		<div class="title">
+			<h2>热门推荐</h2>
+			<a href="hot-tuijian.html" class="more">MORE ></a>
+		</div>
+		<ul>
+			<li><a href="place-details.html"><img src="images/tuijian_01.png" alt=""></a></li>
+			<li><a href="place-details.html"><img src="images/tuijian_02.png" alt=""></a></li>
+			<li><a href="place-details.html"><img src="images/tuijian_03.png" alt=""></a></li>
+		</ul>
+	</div>
+</div>
+<footer>
+	<ul>
+		<li class="tuijian active">
+			<a href="index.html">
+				<p>推荐</p>
+			</a>
+		</li>
+		<li class="mudidi">
+			<a href="place.html">
+				<p>目的地</p>
+			</a>
+		</li>
+		<li class="liaotian">
+			<a href="">
+				<p>聊天</p>
+			</a>
+		</li>
+		<li class="guanli">
+			<a href="person.html">
+				<p>我的管理</p>
+			</a>
+		</li>
+	</ul>
+</footer>
+<script type="text/javascript">
+$(document).ready(function(){	
+	var $drag = false;
+	var $box=$(".banner ul");
+	var $btn=$(".btn-box span");
+	var $height;
+	function autoResize(){
+		$height=$(".banner ul li").eq(0).height();
+		if($height<213){
+			$height=213
+		}
+		$(".banner").css({
+			height:$height
+		})
+	}
+	autoResize();
+	$(window).resize(function(){
+		autoResize();
+	})
+	$box.touchSlider({
+		flexible : true,
+		speed : 200,
+		btn_prev : $("#prev"),
+		btn_next : $("#next"),
+		paging : $(".btn-box span"),
+		counter : function (e){
+			$(".btn-box span").removeClass("cur").eq(e.current-1).addClass("cur");
+		}
+	});
+	timer = setInterval(function(){
+		$("#next").click();
+	}, 5000);
+	$box.hover(function(){
+		clearInterval(timer);
+	},function(){
+		timer = setInterval(function(){
+			$("#btn_next").click();
+		},5000);
+	});
+	$box.bind("mousedown", function() {
+		$drag = false;
+	});
+	$box.bind("dragstart", function() {
+		$drag = true;
+	});
+	$btn.click(function(){
+		if($drag) {
+			return false;
+		}
+	});	
+});
+</script>
+<script type="text/javascript">
+$(function(){
+	var oBtn=$(".download-app .close-btn");
+	var label=$(".index .banner .inputbox label");
+	var input=$(".index .banner input");
+	oBtn.on("tap",function(){
+		$(this).parent().slideUp();
+	})
+	input.focus(function(){
+		label.hide()
+	})
+	input.blur(function(){
+		label.show()
+	})	
+})
+</script>
+<script type="text/javascript">
+$(function(){
+	var h=$(window).height();
+	$(window).resize(function(){
+		var h1=$(window).height();
+		if(h1<h){
+			$("footer").css({
+				visibility:"hidden"
+			})
+		}else{
+			$("footer").css({
+				visibility:"visible"
+			})			
+		}
+	})
+})	
+</script>  
+</body>
+</html>

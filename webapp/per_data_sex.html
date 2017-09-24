@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>选择性别</title>
+<link href="css/person.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/common.js"></script>
+<script src="js/jquery1-11-1.js"></script>
+<script>
+$(function(){
+	$("#data_sex li").click(function(e) {
+        $(this).addClass("acv").siblings().removeClass("acv")
+    });
+	})
+</script>
+</head>
+
+<body bgcolor="#f1f1f1">
+<div id="nav_top">
+	<a href="javascript:history.back()" style="color:#fff;font-size:0.3rem">取消</a>
+    <span class="left_center">选择性别</span>
+    <a  class="link_wait">保存</a>
+</div>
+<ul id="data_sex">
+	<li class="acv">男</li>
+	<li style="border:0">女</li>
+</ul>
+</body>
+</html>

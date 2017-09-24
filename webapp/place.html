@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>目的地</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="css/common.css">
+<script type="text/javascript" src="js/width-conversion.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/fx.js"></script>
+<script type="text/javascript" src="js/fx_methods.js"></script>
+<script type="text/javascript" src="js/touch.js"></script>
+</head>
+<body class="place">
+<header>
+	<div class="title">目的地</div>
+	<div class="search-box">
+		<input type="text" placeholder="请输入目的地" id="search">
+		<span class="search" id="search-btn">搜索</span>
+	</div>
+</header>
+<div data-role="page" id="wrapper">
+	<div class="container">
+		<div class="side">
+			<ul>
+				<li class="active">
+					<div class="icon">
+						<img src="images/place_i01.png" alt="" class="show">
+						<img src="images/place_i01_1.png" alt="" class="hide">
+					</div>
+					<p>热门</p>					
+				</li>
+				<li>
+					<div class="icon">
+						<img src="images/place_i02.png" alt="" class="show">
+						<img src="images/place_i02_1.png" alt="" class="hide">
+					</div>
+					<p>欧洲</p>					
+				</li>
+				<li>
+					<div class="icon">
+						<img src="images/place_i03.png" alt="" class="show">
+						<img src="images/place_i03_1.png" alt="" class="hide">
+					</div>
+					<p>美洲</p>					
+				</li>
+				<li>
+					<div class="icon">
+						<img src="images/place_i04.png" alt="" class="show">
+						<img src="images/place_i04_1.png" alt="" class="hide">
+					</div>
+					<p>非洲</p>					
+				</li>
+				<li>
+					<div class="icon">
+						<img src="images/place_i05.png" alt="" class="show">
+						<img src="images/place_i05_1.png" alt="" class="hide">
+					</div>
+					<p>大洋洲</p>					
+				</li>
+				<li>
+					<div class="icon">
+						<img src="images/place_i01.png" alt="" class="show">
+						<img src="images/place_i01_1.png" alt="" class="hide">
+					</div>
+					<p>亚洲</p>					
+				</li>
+			</ul>
+		</div>
+		<div class="main">
+			<ul class="show Hot" id="Hot">
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p01.png" alt="">
+						<div class="place-name">
+							<span>巴黎</span>
+							<p>Paris，Ville de Paris</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p02.png" alt="">
+						<div class="place-name">
+							<span>仁川</span>
+							<p>Incheon</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="Europe" id="Europe">
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p01.png" alt="">
+						<div class="place-name">
+							<span>巴黎</span>
+							<p>Paris，Ville de Paris</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p02.png" alt="">
+						<div class="place-name">
+							<span>仁川</span>
+							<p>Incheon</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="America" id="America">
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p01.png" alt="">
+						<div class="place-name">
+							<span>巴黎</span>
+							<p>Paris，Ville de Paris</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p02.png" alt="">
+						<div class="place-name">
+							<span>仁川</span>
+							<p>Incheon</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="Africa" id="Africa">
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p01.png" alt="">
+						<div class="place-name">
+							<span>巴黎</span>
+							<p>Paris，Ville de Paris</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p02.png" alt="">
+						<div class="place-name">
+							<span>仁川</span>
+							<p>Incheon</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="Oceania" id="Oceania">
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p01.png" alt="">
+						<div class="place-name">
+							<span>巴黎</span>
+							<p>Paris，Ville de Paris</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p02.png" alt="">
+						<div class="place-name">
+							<span>仁川</span>
+							<p>Incheon</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+			<ul class="Asia" id="Asia">
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p01.png" alt="">
+						<div class="place-name">
+							<span>巴黎</span>
+							<p>Paris，Ville de Paris</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p02.png" alt="">
+						<div class="place-name">
+							<span>仁川</span>
+							<p>Incheon</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p03.png" alt="">
+						<div class="place-name">
+							<span>伦敦</span>
+							<p>London</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p04.png" alt="">
+						<div class="place-name">
+							<span>米兰</span>
+							<p>Milan</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p05.png" alt="">
+						<div class="place-name">
+							<span>东京</span>
+							<p>Tokyo</p>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="place-details.html">
+						<img src="images/place_p06.png" alt="">
+						<div class="place-name">
+							<span>曼谷</span>
+							<p>Bangkok</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<footer>
+	<ul>
+		<li class="tuijian">
+			<a href="index.html">
+				<p>推荐</p>
+			</a>
+		</li>
+		<li class="mudidi active">
+			<a href="place.html">
+				<p>目的地</p>
+			</a>
+		</li>
+		<li class="liaotian">
+			<a href="">
+				<p>聊天</p>
+			</a>
+		</li>
+		<li class="guanli">
+			<a href="person.html">
+				<p>我的管理</p>
+			</a>
+		</li>
+	</ul>
+</footer>
+<script type="text/javascript">
+$(function(){
+	var oUl=$(".main ul");
+	var oLi=$(".side ul li");
+	var index=0;
+	oLi.tap(function(){
+		index=$(this).index();
+		$(this).addClass("active").siblings().removeClass("active");
+		oUl.eq(index).show().addClass("show").siblings().hide().removeClass("show");
+	})
+	$("#search").focus(function(){
+		$(this).parent().addClass("search-focus");
+	})
+})
+</script>
+</body>
+</html>

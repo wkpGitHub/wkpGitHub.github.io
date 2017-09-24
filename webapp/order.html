@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>填写订单</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="css/common.css">
+<script type="text/javascript" src="js/width-conversion.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/fx.js"></script>
+<script type="text/javascript" src="js/fx_methods.js"></script>
+<script type="text/javascript" src="js/touch.js"></script>
+</head>
+<body class="order">
+<div id="wrapper" class="templates">
+	<header>
+		<div class="header-top">
+			<a href="javascript:history.go(-1)" class="back"></a>
+			<span>海外接送机</span>
+			<a href="" class="kf">咨询客服</a>
+		</div>
+		<div class="step">
+			<ul>
+				<li>填写行程</li>
+				<li>选择车型</li>
+				<li class="active">填写订单</li>
+				<li class="last">在线支付</li>
+			</ul>
+		</div>				
+	</header>
+	<div class="main">
+		<div class="route">
+			<div class="from row">
+				<div class="icon">
+					<img src="images/xc_i01.png" alt="">
+				</div>
+				<div class="add from-add">
+					<h2>东京羽田</h2>
+					<p>出发地地址</p>
+				</div>
+			</div>
+			<div class="to row">
+				<div class="icon">
+					<img src="images/xc_i02.png" alt="">
+				</div>
+				<div class="add to-add">
+					<h2>吉隆坡</h2>
+					<p>目的地地址</p>
+				</div>
+			</div>
+		</div>
+		<div class="car-info">
+			<div class="pic">
+				<img src="images/models_car01.png" alt="">
+			</div>
+			<div class="info">
+				<h2>经济型5座</h2>
+				<p>帕萨特／天籁／本田雅阁／迈腾</p>
+				<div class="person-luggage">
+					<span class="person" data-number="4"><img src="images/models_person.png" alt="">X4</span>
+					<span class="luggage" data-number="2"><img src="images/modles_luggage.png" alt="">X2</span>
+				</div>
+			</div>
+			<div class="price">
+				<span>￥99999</span>
+			</div>			
+		</div>
+		<div class="order-info">
+			<div class="tit">订车信息</div>
+			<ul>
+				<li class="first">
+					<div class="text">人数</div>
+					<div class="plus-minus person">
+						<span class="minus disabled"></span><input type="text" value="1" readonly><span class="plus"></span>
+					</div>
+				</li>
+				<li>
+					<div class="text">行李数</div>
+					<div class="plus-minus luggage">
+						<span class="minus disabled"></span><input type="text" value="0" readonly><span class="plus"></span>
+					</div>
+				</li>
+				<li>
+					<div class="text">用车时间</div>
+					<div class="time">当地时间2016-09-20 23:40</div>
+				</li>
+			</ul>
+		</div>
+		<div class="available-info">
+			<div class="tit">可选服务</div>
+			<div class="service">
+				<div class="collapsible child">
+					<div class="text">儿童座椅</div>
+					<div class="fr">儿童<em class="total">0</em>位</div>
+				</div>
+				<div class="list">
+					<ul>
+						<li>
+							<div class="age">0-4岁</div>
+							<div class="price">价格<span>￥620</span></div>
+							<div class="plus-minus">
+								<span class="minus disabled"></span><input type="text" value="0" readonly id="i1"><span class="plus"></span>
+							</div>
+						</li>
+						<li>
+							<div class="age">1-4岁</div>
+							<div class="price">价格<span>￥620</span></div>
+							<div class="plus-minus">
+								<span class="minus disabled"></span><input type="text" value="0" readonly id="i2"><span class="plus"></span>
+							</div>
+						</li>
+						<li>
+							<div class="age">4-7岁</div>
+							<div class="price">价格<span>￥620</span></div>
+							<div class="plus-minus">
+								<span class="minus disabled"></span><input type="text" value="0" readonly id="i3"><span class="plus"></span>
+							</div>
+						</li>
+						<li class="last">
+							<div class="age">7-12岁</div>
+							<div class="price">价格<span>￥620</span></div>
+							<div class="plus-minus">
+								<span class="minus disabled"></span><input type="text" value="0" readonly id="i4"><span class="plus"></span>
+							</div>
+						</li>
+					</ul>
+				</div>				
+			</div>
+			<div class="service">
+				<div class="collapsible jieji">
+					<div class="text">举牌接机</div>
+					<div class="mid">价格<span>￥620</span></div>
+					<div class="checkbox">
+						<input type="checkbox" id="checkBtn">
+						<label for="checkBtn"></label>
+					</div>
+				</div>
+				<div class="list">
+					<div class="box">
+						<textarea name="" id="" placeholder="举牌内容"></textarea>
+					</div>
+				</div>				
+			</div>
+		</div>
+		<div class="coupon-info">
+			<div class="tit">优惠活动</div>
+			<div class="info">
+				<a href="">
+					<span class="text">优惠券</span>
+					<span class="usable"><em>3张可用</em></span>					
+				</a>
+			</div>
+		</div>
+		<div class="passengers-info">
+			<div class="tit">乘客信息</div>
+			<ul>
+				<li class="first">
+					<div class="text">乘客姓名</div>
+					<div class="mid">
+						<input type="text" placeholder="请输入姓名">
+					</div>
+				</li>
+				<li>
+					<div class="text">手机号码</div>
+					<div class="mid area-code">
+						<a href="code-search.html" class="code"><span>+86</span></a><input type="text" placeholder="建议临行前开启国外漫游">
+					</div>
+				</li>
+				<li>
+					<div class="text">备用手机</div>
+					<div class="mid area-code">
+						<a href="code-search.html" class="code"><span>+86</span></a><input type="text" placeholder="备用联系手机号码(选填)">
+					</div>
+				</li>
+				<li>
+					<div class="text">微信号</div>
+					<div class="mid">
+						<input type="text" placeholder="请填写微信号(选填)">
+					</div>
+				</li>
+				<li class="bz">
+					<div class="text">备注信息</div>
+					<div class="mid">
+						<textarea placeholder="可用在此备注您的其它信息，如行李箱大小和数量，以及其它需求等"></textarea>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="explain-info">
+			<div class="tit">服务说明</div>
+			<div class="info-list">
+				<dl>
+					<dt>服务时间</dt>
+					<dd><p>最晚在2016-06-04  14:30前告知派车信息；</p></dd>
+				</dl>
+				<dl>
+					<dt>用车流程</dt>
+					<dd><p>订单确定后，前往订单页查看乘车凭证，获取司机联系方式和司机等候地点；</p></dd>
+				</dl>
+				<dl>
+					<dt>等候时间</dt>
+					<dd>
+						<p>免费等候90分钟（按照航班实际抵达时间开始计算）；未及时用车或者没有提前告知；司机可自行离开，费用不退还。</p>
+						<p>联系司机继续等待 ；等候费：泰国、越南、印尼、台湾、韩国、日本、马来西亚、新加坡将收取100RMB/ 小时，其他国家和地区收200RMB／小时。请将以上费用当面付给司机。面付金额不能提供发票。</p>
+					</dd>
+				</dl>
+				<dl>
+					<dt>夜间服务</dt>
+					<dd><p>夜间服务费：若实际上车时间为22:00-7:00，泰国、越南、印尼、台湾、韩国、日本、马来西亚、新加坡将收取100RMB/ 小时，其他国家和地区收200RMB／小时。请将此费用当面付给司机。</p></dd>
+				</dl>
+				<dl>
+					<dt>取消规则</dt>
+					<dd><p>北京时间2016-06-20 04:23前可免费取消，超过此时间取消将收取订单全部损失，订单不能修改。</p></dd>
+				</dl>				
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="total-price">总额￥<em>1888</em></div>
+		<div class="submit-order" onclick="window.open('pay.html','_self')">提交订单</div>
+		<div class="price-list">价格明细<i></i></div>
+	</footer>
+</div>
+<script type="text/javascript">
+$(function(){
+	var $collapsible1=$(".available-info .child");
+	var $collapsible2=$(".available-info .jieji label");
+	$collapsible1.tap(function(){
+		if($(this).parents(".service").hasClass("open")){
+			$(this).parents(".service").removeClass("open")
+		}else{
+			$(this).parents(".service").addClass("open")
+		}
+	})
+	$collapsible2.tap(function(){
+		if($(this).parents(".service").hasClass("open")){
+			$(this).parents(".service").removeClass("open")
+		}else{
+			$(this).parents(".service").addClass("open")
+		}		
+	})
+})	
+</script>
+<script type="text/javascript">
+$(function(){
+	var personNumber=parseInt($(".car-info .person").attr("data-number"));
+	var luggageNumber=parseInt($(".car-info .luggage").attr("data-number"));
+	var $total=$(".available-info .collapsible .total");
+	var minus=$(".plus-minus .minus");
+	var plus=$(".plus-minus .plus");
+	minus.tap(function(){
+		var val=$(this).siblings("input").val();
+		if($(this).parent().hasClass("person")){
+			if(val>2){
+				val--
+			}else{
+				val=1;
+				$(this).addClass("disabled")
+			}
+		}else{
+			if(val>1){
+				val--
+			}else{
+				val=0;
+				$(this).addClass("disabled")
+			}
+		}
+		$(this).siblings(".plus").removeClass("disabled");
+		$(this).siblings("input").val(val);
+		$total.text(parseInt($("#i1").val())+parseInt($("#i2").val())+parseInt($("#i3").val())+parseInt($("#i4").val()))
+	})
+	plus.tap(function(){
+		var val=$(this).siblings("input").val();
+		if($(this).parent().hasClass("person")){
+			if(val<personNumber-1){
+				val++;
+			}else{
+				val=personNumber;
+				$(this).addClass("disabled")
+			}
+		}else if($(this).parent().hasClass("luggage")){
+			if(val<luggageNumber-1){
+				val++;
+			}else{
+				val=luggageNumber;
+				$(this).addClass("disabled")
+			}
+		}else{
+			val++;
+		}
+		$(this).siblings(".minus").removeClass("disabled");
+		$(this).siblings("input").val(val);
+		$total.text(parseInt($("#i1").val())+parseInt($("#i2").val())+parseInt($("#i3").val())+parseInt($("#i4").val()))
+	})
+
+})	
+</script>
+<script type="text/javascript">
+$(function(){
+	var h=$(window).height();
+	$(window).resize(function(){
+		var h1=$(window).height();
+		if(h1<h){
+			$("footer").css({
+				visibility:"hidden"
+			})
+		}else{
+			$("footer").css({
+				visibility:"visible"
+			})			
+		}
+	})
+})	
+</script>    
+</body>
+</html>

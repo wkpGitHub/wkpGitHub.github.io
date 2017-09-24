@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>消息中心</title>
+<link href="css/person.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/common.js"></script>
+<script src="js/jquery1-11-1.js"></script>
+<script>
+$(function(){
+	$("#per_mes .per_mess_r").click(function(e) {
+        $(this).hide();
+		$("#per_mes .link_wait").show()
+		$("#per_mes .footer").show()
+		$(".per_mes_ul li").addClass("edit")
+    });
+	$("#per_mes .link_wait").click(function(e) {
+        $(this).hide();
+		$("#per_mes .per_mess_r").show()
+		$("#per_mes .footer").hide()
+		$(".per_mes_ul li").removeClass()
+		return false;
+    });
+	$(".per_mes_ul li").click(function(e) {
+        $(this).toggleClass("cur")
+    });
+	$("#dele_r").click(function(e) {
+        $(".per_mes_ul .cur").remove()
+    });
+	$("#all_left").click(function(e) {
+		$(this).toggleClass("all_left")
+        if($(this).hasClass("all_left")){
+			$(".per_mes_ul li").addClass("cur")
+			}
+		else{
+			$(".per_mes_ul li").removeClass("cur")
+			}	
+    });
+	})
+</script>
+</head>
+
+<body id="per_mes">
+<div id="nav_top">
+	<a href="javascript:history.back()" class="go_back"></a>
+    <span class="left_center">消息中心</span>
+    <span class="per_mess_r"></span>
+    <a href="#" class="link_wait" style="display:none;">完成</a>
+</div>
+<ul class="per_mes_ul">
+	<li>
+    	<h2>您的订单3013476292718将于3天后自动确认收货，请您确认该交易。</h2>
+        <p>2016-06-22 10:40:59</p>
+    </li>
+	<li>
+    	<h2>您的订单3013476292718将于3天后自动确认收货，请您确认该交易。</h2>
+        <p>2016-06-22 10:40:59</p>
+    </li>
+	<li>
+    	<h2>您的订单3013476292718将于3天后自动确认收货，请您确认该交易。</h2>
+        <p>2016-06-22 10:40:59</p>
+    </li>
+	<li>
+    	<h2>您的订单3013476292718将于3天后自动确认收货，请您确认该交易。</h2>
+        <p>2016-06-22 10:40:59</p>
+    </li>
+	<li>
+    	<h2>您的订单3013476292718将于3天后自动确认收货，请您确认该交易。</h2>
+        <p>2016-06-22 10:40:59</p>
+    </li>
+	<li>
+    	<h2>您的订单3013476292718将于3天后自动确认收货，请您确认该交易。</h2>
+        <p>2016-06-22 10:40:59</p>
+    </li>
+	<li>
+    	<h2>您的订单3013476292718将于3天后自动确认收货，请您确认该交易。</h2>
+        <p>2016-06-22 10:40:59</p>
+    </li>
+	<li>
+    	<h2>您的订单3013476292718将于3天后自动确认收货，请您确认该交易。</h2>
+        <p>2016-06-22 10:40:59</p>
+    </li>
+</ul>
+<div class="footer">
+	<span id="all_left" class="f60">标记全部</span>
+    <span id="dele_r">删除</span>
+</div>
+</body>
+</html>

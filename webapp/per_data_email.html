@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>常用邮箱</title>
+<link href="css/person.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/common.js"></script>
+<script src="js/jquery1-11-1.js"></script>
+</head>
+
+<body bgcolor="#f1f1f1">
+<div id="nav_top">
+	<a href="javascript:history.back()" style="color:#fff;font-size:0.3rem">取消</a>
+    <span class="left_center">常用邮箱</span>
+    <a  class="link_wait">保存</a>
+</div>
+<div id="data_input">
+	<input type="email" placeholder="输入常用邮箱">
+    <span class="clear_input bor_50">×</span>
+</div>
+
+<script>
+$(".clear_input").click(function(e) {
+    $(this).prev().val("")
+});
+</script>
+</body>
+</html>

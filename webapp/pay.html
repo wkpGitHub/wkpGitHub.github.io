@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>订单支付</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="css/common.css">
+<script type="text/javascript" src="js/width-conversion.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/fx.js"></script>
+<script type="text/javascript" src="js/fx_methods.js"></script>
+<script type="text/javascript" src="js/touch.js"></script>
+</head>
+<body class="order pay">
+<div id="wrapper" class="templates">
+	<header>
+		<div class="header-top">
+			<a href="javascript:history.go(-1)" class="back"></a>
+			<span>海外接送机</span>
+			<a href="" class="kf">咨询客服</a>
+		</div>
+		<div class="step">
+			<ul>
+				<li>填写行程</li>
+				<li>选择车型</li>
+				<li>填写订单</li>
+				<li class="last active">在线支付</li>
+			</ul>
+		</div>				
+	</header>
+	<div class="main">
+		<div class="order-total-price">
+			<div class="tit">订单金额</div>
+			<div class="price-list">
+				<ul>
+					<li class="first">
+						<div class="fl">订单总额</div>
+						<div class="fr">￥1888</div>
+					</li>
+					<li>
+						<div class="fl">优惠金额</div>
+						<div class="fr"><em>￥0</em></div>
+					</li>
+					<li>
+						<div class="fl">实际总额</div>
+						<div class="fr"><em>￥1888</em></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="pay-method">
+			<div class="tit">支付方式</div>
+			<div class="method-list">
+				<ul>
+					<li class="first">
+						<div class="method-icon">
+							<img src="images/zfb.png" alt="">
+						</div>
+						<div class="method-name">
+							<div class="fl">支付宝</div>
+							<div class="fr">
+								<input type="radio" name="method" checked id="zfb">
+								<label for="zfb"></label>
+								
+							</div>
+						</div>						
+					</li>
+					<li>
+						<div class="method-icon">
+							<img src="images/wx.png" alt="">
+						</div>
+						<div class="method-name">
+							<div class="fl">微信支付</div>
+							<div class="fr">
+								<input type="radio" name="method" id="wx">
+								<label for="wx"></label>
+							</div>
+						</div>						
+					</li>
+					<li>
+						<div class="method-icon">
+							<img src="images/yl.png" alt="">
+						</div>
+						<div class="method-name">
+							<div class="fl">银行卡支付</div>
+							<div class="fr">
+								<input type="radio" name="method" id="yl">
+								<label for="yl"></label>
+							</div>
+						</div>						
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="submit-btn">
+			<button type="button" onclick="window.open('pay-success.html','_self')">立即支付</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	var aLi=$(".pay-method .method-list li");
+	var input=$(".pay-method .method-list li input");
+	aLi.tap(function(){
+		input.removeAttr("checked");
+		$(this).find("input").attr("checked",true)
+	})	
+})	
+</script>    
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>海外接送机</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="css/common.css">
+<script type="text/javascript" src="js/width-conversion.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/fx.js"></script>
+<script type="text/javascript" src="js/fx_methods.js"></script>
+<script type="text/javascript" src="js/touch.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
+<link href="css/mobiscroll.custom-2.16.1.min.css" rel="stylesheet" type="text/css" />
+<script src="js/mobiscroll.custom-2.16.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="wrapper" class="templates" data-role="page">
+	<header>
+		<div class="header-top">
+			<a href="javascript:history.go(-1)" class="back"></a>
+			<span>海外接送机</span>
+			<a href="" class="kf">咨询客服</a>
+		</div>
+		<div class="step">
+			<ul>
+				<li class="active">填写行程</li>
+				<li>选择车型</li>
+				<li>填写订单</li>
+				<li class="last">在线支付</li>
+			</ul>
+		</div>
+		<div id="tab">
+			<a class="cur">接机</a>
+			<a>送机</a>
+		</div>				
+	</header>
+	<div class="main">
+		<div class="form-box">
+			<div class="form show" id="form01">
+				<div class="step01">
+					<div class="part">
+						<div class="row row1">
+							<div class="col col1">
+								<i></i><img src="images/xc_i01.png" alt="">
+							</div>
+							<div class="col col2">
+								<div class="text">航班</div>
+								<input type="text" placeholder="请选择接机航班">
+								<i></i>						
+							</div>
+						</div>
+						<div class="row row2 last">
+							<div class="col col1">
+								<i></i><img src="images/xc_i02.png" alt="">
+							</div>
+							<div class="col col2">
+								<div class="text">目的地</div>
+								<input type="text" placeholder="请选择下车地点">
+								<i></i>						
+							</div>
+						</div>						
+					</div>
+					<div class="part">
+						<div class="row row3 last">
+							<div class="col col1">
+								<i></i><img src="images/xc_i03.png" alt="">
+							</div>
+							<div class="col col2">
+								<div class="text">用车时间</div>
+								<input type="text" placeholder="请选择用车时间" class="date">
+								<i></i>						
+							</div>
+						</div>						
+					</div>
+					<div class="submit-btn" id="submit-btn1">
+						<a onclick="window.open('choice-models.html','_self')">选择车型</a>
+					</div>					
+				</div>
+			</div>
+			<div class="form" id="form02">
+				<div class="step01">
+					<div class="part">
+						<div class="row row1">
+							<div class="col col1">
+								<i></i><img src="images/xc_i01.png" alt="">
+							</div>
+							<div class="col col2">
+								<div class="text">航班</div>
+								<input type="text" placeholder="请选择接机航班">
+								<i></i>						
+							</div>
+						</div>
+						<div class="row row2 last">
+							<div class="col col1">
+								<i></i><img src="images/xc_i02.png" alt="">
+							</div>
+							<div class="col col2">
+								<div class="text">出发地</div>
+								<input type="text" placeholder="请选择上车地点">
+								<i></i>						
+							</div>
+						</div>						
+					</div>
+					<div class="part">
+						<div class="row row3 last">
+							<div class="col col1">
+								<i></i><img src="images/xc_i03.png" alt="">
+							</div>
+							<div class="col col2">
+								<div class="text">用车时间</div>
+								<input type="text" placeholder="请选择用车时间" class="date">
+								<i></i>						
+							</div>
+						</div>						
+					</div>
+					<div class="submit-btn" id="submit-btn1">
+						<a onclick="window.open('choice-models.html','_self')">选择车型</a>
+					</div>					
+				</div>
+			</div>		
+		</div>
+		<div class="notice">
+			<a href="notes.html" class="notes">预定须知</a>
+			<a href="questions.html" class="question">常见问题</a>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	var i=0;
+	$("#tab a").tap(function(){
+		i=$(this).index();
+		$(this).addClass("cur").siblings().removeClass("cur");
+		$(this).parents(".templates").find(".form-box .form").eq(i).addClass("show").siblings().removeClass("show");
+	})
+	$("#tab a").bind("touchend",function(e){
+		e.preventDefault();
+	})
+})	
+</script>
+<script type="text/javascript">
+var jQuery=$.noConflict();
+jQuery(function(){  
+    // jq("#scroller").mobiscroll().date();            
+    var currYear = (new Date()).getFullYear();    
+    //初始化日期控件  
+    var opt = {  
+        preset: 'datetime', //日期，可选：date\datetime\time\tree_list\image_text\select  
+        theme: 'ios', //皮肤样式，可选：default\android\android-ics light\android-ics\ios\jqm\sense-ui\wp light\wp\android-holo-light  
+        display: 'bottom', //显示方式 ，可选：modal\inline\bubble\top\bottom  
+        mode: 'scroller', //日期选择模式，可选：scroller\clickpick\mixed  
+        lang:'zh', 
+        display:'bottom', 
+        dateFormat: 'yyyy-mm-dd', // 日期格式  
+        setText: '确定', //确认按钮名称  
+        cancelText: '取消',//取消按钮名籍我  
+        dateOrder: 'yyyymmdd', //面板中日期排列格式  
+        headerText: function(valueText) { 
+                var array = valueText.split('-');
+                var arr2=array[2].split(" ");
+                return array[0] + "年" + array[1] + "月" + arr2[0] + "日"+arr2[1];
+        },
+        dayText: '日', monthText: '月', yearText: '年', //面板中年月日文字  
+        showNow: true,    
+		nowText: "今",    
+        startYear:currYear, //开始年份    
+        endYear:currYear + 1 //结束年份     
+    };  
+    jQuery(".date").mobiscroll(opt);     
+});  
+</script>    
+</body>
+</html>

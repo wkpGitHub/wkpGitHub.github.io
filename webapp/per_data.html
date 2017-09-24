@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>个人资料</title>
+<link href="css/person.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/common.js"></script>
+<script src="js/jquery1-11-1.js"></script>
+</head>
+
+<body id="per_data">
+<div id="nav_top">
+	<a href="javascript:history.back()" class="go_back"></a>
+    <span class="left_center">资料修改</span>
+</div>
+<div class="data_top">
+	<div class="image bor_50"><img src="images/touxiang@2x.png"></div>
+    <p>头像设置</p>
+</div>
+<ul class="data_list">
+	<li>
+        <span class="left">绑定手机</span>
+        <span class="right" style="color:#333;">13626710891</span>
+    </li>
+	<li>
+    	<a href="per_data_sex.html">
+            <span class="left">性      别</span>
+            <span class="right">选择性别</span>
+        </a>
+    </li>
+	<li>
+        <a href="per_data_email.html">
+            <span class="left">常用邮箱</span>
+            <span class="right">输入常用邮箱</span>
+        </a>
+    </li>
+	<li>
+        <a href="per_data_scr.html">
+            <span class="left">修改密码</span>
+        </a>
+    </li>
+</ul>
+
+<!--修改头像-->
+<div id="choose_bj"></div>
+<div id="choo_data">
+    <ul class="choos_top">
+    	<li style="border-bottom:1px solid #dededf;">拍照</li>
+    	<li>从相册中选择</li>
+    </ul>
+    <ul>
+    	<li class="cancel">取消</li>
+    </ul>
+</div>
+<script>
+$("#per_data .data_top .image").click(function(e) {
+    $("#choose_bj").show();
+	$("#choo_data").animate({bottom:0},300)
+});
+$("#per_data .cancel").click(function(e) {
+    $("#choose_bj").hide();
+	$("#choo_data").animate({bottom:"-3.9rem"},300)
+});
+</script>
+</body>
+</html>

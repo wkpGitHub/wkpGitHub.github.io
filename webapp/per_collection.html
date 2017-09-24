@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>我的收藏</title>
+<link href="css/person.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/common.js"></script>
+<script src="js/jquery1-11-1.js"></script>
+<script>
+$(function(){
+	$("#per_coll #per_nav_ul a").click(function(e) {
+		$("#per_coll #per_nav_ul a").removeClass("cur");
+        $(this).addClass("cur");
+		$("#joy,#object").hide();
+		$($(this).attr("href")).show();
+		return false;
+    });
+	$("#nav_top .link_wait").click(function(e) {
+		if($(this).is(".cur")){
+			$(".coll_list .left").hide()
+			$(this).text("编辑")
+			$(".coll_list .active").parent().parent().remove()
+		}
+		else{
+			$(".coll_list .left").show()
+			$(this).text("取消编辑");
+			}
+        $(this).toggleClass("cur")
+    });
+	$(".coll_list>li>a").click(function(e) {
+		$(this).children(".left").toggleClass("active")
+        return false;
+    });
+	})
+</script>
+</head>
+
+<body id="per_coll">
+<div id="nav_top">
+	<a href="javascript:history.back()" class="go_back"></a>
+    <span class="left_center">我的收藏</span>
+    <a  class="link_wait">编辑</a>
+</div>
+<ul id="per_nav_ul">
+	<li><a href="#joy" class="cur">当地玩乐</a></li>
+	<li><a href="#object">目的地</a></li>
+</ul>
+<div style="height:1.86rem;"></div>
+<div id="joy">
+<ul class="coll_list">
+	<li>
+    	<a href="#">
+            <div class="left"></div>
+            <div class="right">
+                <div class="image">
+                    <img src="images/per_wait_waite_main_03.png">
+                    <p>当地玩乐</p>
+                </div>
+                <div class="image_r">
+                    <h2 class="text-over">景福宫－北村韩屋村＋广藏市景福宫－北村韩屋村＋广藏市</h2>
+                    <p class="text-over">首尔市区，北韩村屋，景福宫，首尔塔</p>
+                    <div class="image_mid">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <span>8.5分</span>
+                    </div>
+                    <p class="image_bot">
+                        <span class="left_span"><big>¥280</big>起</span>
+                        <span class="right_span">已售9270</span>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </li>
+	<li>
+    	<a href="#">
+            <div class="left"></div>
+            <div class="right">
+                <div class="image">
+                    <img src="images/per_wait_waite_main_03.png">
+                    <p>当地玩乐</p>
+                </div>
+                <div class="image_r">
+                    <h2 class="text-over">景福宫－北村韩屋村＋广藏市景福宫－北村韩屋村＋广藏市</h2>
+                    <p class="text-over">首尔市区，北韩村屋，景福宫，首尔塔</p>
+                    <div class="image_mid">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <span>8.5分</span>
+                    </div>
+                    <p class="image_bot">
+                        <span class="left_span"><big>¥280</big>起</span>
+                        <span class="right_span">已售9270</span>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </li>
+	<li>
+    	<a href="#">
+            <div class="left"></div>
+            <div class="right">
+                <div class="image">
+                    <img src="images/per_wait_waite_main_03.png">
+                    <p>当地玩乐</p>
+                </div>
+                <div class="image_r">
+                    <h2 class="text-over">景福宫－北村韩屋村＋广藏市景福宫－北村韩屋村＋广藏市</h2>
+                    <p class="text-over">首尔市区，北韩村屋，景福宫，首尔塔</p>
+                    <div class="image_mid">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        <span>8.5分</span>
+                    </div>
+                    <p class="image_bot">
+                        <span class="left_span"><big>¥280</big>起</span>
+                        <span class="right_span">已售9270</span>
+                    </p>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+</div>
+<!--当地玩乐-->
+<div id="object" style="display:none">
+<ul class="coll_list">
+	<li>
+        <a href="#">
+            <div class="left"></div>
+            <div class="right">
+                <div class="image">
+                    <img src="images/per_wait_waite_main_03.png">
+                </div>
+                <div class="image_r">
+                    <h2 class="text-over">景福宫－北村韩屋村＋广藏市景福宫－北村韩屋村＋广藏市</h2>
+                    <p class="text-over-col">曼谷是繁华的国际大都市，是贵金属和宝石的交易中心。经济占泰国总量的44%，曼谷港承担着泰国90%的外贸。曼谷是繁华的国际大都</p>
+                </div>
+            </div>
+        </a>    
+    </li>
+	<li>
+        <a href="#">
+            <div class="left"></div>
+            <div class="right">
+                <div class="image">
+                    <img src="images/per_wait_waite_main_03.png">
+                </div>
+                <div class="image_r">
+                    <h2 class="text-over">景福宫－北村韩屋村＋广藏市景福宫－北村韩屋村＋广藏市</h2>
+                    <p class="text-over-col">曼谷是繁华的国际大都市，是贵金属和宝石的交易中心。经济占泰国总量的44%，曼谷港承担着泰国90%的外贸。曼谷是繁华的国际大都</p>
+                </div>
+            </div>
+        </a>    
+    </li>
+	<li>
+        <a href="#">
+            <div class="left"></div>
+            <div class="right">
+                <div class="image">
+                    <img src="images/per_wait_waite_main_03.png">
+                </div>
+                <div class="image_r">
+                    <h2 class="text-over">景福宫－北村韩屋村＋广藏市景福宫－北村韩屋村＋广藏市</h2>
+                    <p class="text-over-col">曼谷是繁华的国际大都市，是贵金属和宝石的交易中心。经济占泰国总量的44%，曼谷港承担着泰国90%的外贸。曼谷是繁华的国际大都</p>
+                </div>
+            </div>
+        </a>    
+    </li>
+</ul>    
+</div>
+
+
+<!--没有收藏-->
+<div id="no_bill" style="display:none">
+	<div class="image"><img src="images/per_collection_no_03.png"></div>
+    <p>你暂时还没有收藏，随便去逛逛吧！</p>
+    <a href="#">随便看看</a>
+</div>
+<!--没有收藏结束-->
+
+</body>
+</html>

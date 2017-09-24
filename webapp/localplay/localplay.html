@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>当地玩乐</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="css/normalize.min.css" />
+<link rel="stylesheet" href="css/ion.rangeSlider.css" />
+<link rel="stylesheet" href="css/ion.rangeSlider.skinNice.css" id="styleSrc"/>
+<link href="css/localplay.css" rel="stylesheet">
+<script type="text/javascript" src="js/width-conversion.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/fx.js"></script>
+<script type="text/javascript" src="js/fx_methods.js"></script>
+<script type="text/javascript" src="js/touch.js"></script>
+<script type="text/javascript" src="js/iscroll-probe.js"></script>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/ion.rangeSlider.js"></script> 
+</head>
+<body class="local-play">
+<div id="fixed-top">
+	<div class="top-banner">
+		<img src="images/top_banner.png" alt="">
+		<a href="javascript:history.go(-1)" class="back"></a>
+	</div>
+	<div class="search-area">
+		<div class="area-box">
+			<div class="fl">城市</div>
+			<div class="fr">
+				<input type="text" placeholder="请输入目的地/景点/主题/关键字">
+			</div>
+		</div>
+	</div>
+	<div class="filter">
+		<ul>
+			<li class="first"><span>全部分类</span><i></i></li>
+			<li><span>智能排序</span><i></i></li>
+			<li><span>使用时间</span><i></i></li>
+			<li><span>价格区间</span></li>
+		</ul>
+	</div>
+</div>
+<div id="wrapper">
+	<div class="alpha-floor"></div>
+	<div class="filter-list-box">
+		<div class="filter-list">
+			<ol>
+				<li class="first cur" data-value="全部分类">全部分类</li>
+				<li data-value="景点门票">景点门票</li>
+				<li data-value="一日游">一日游</li>
+			</ol>
+		</div>
+		<div class="filter-list">
+			<ol>
+				<li class="first cur" data-value="智能排序">智能排序</li>
+				<li data-value="人气最旺">人气最旺</li>
+				<li data-value="从高到低">价格从高到低</li>
+				<li data-value="从低到高">价格从低到高</li>
+			</ol>
+		</div>
+		<div class="filter-list" id="use-date">
+			<div class="box" id="scroller">
+				<div class="cur-month month"></div>
+				<div class="next-month month"></div>
+				<div class="after-next-month month"></div>				
+			</div>
+		</div>
+		<div class="filter-list" id="price-range">
+			<div class="tit">
+				<h2>价格范围</h2>
+			</div>
+			<div class="range-area">
+				<input type="text" id="range_1" style="display: none;" />
+			</div>
+			<div class="range-btn">
+				<a class="clear">重置</a>
+				<a class="determine">确定</a>
+			</div>
+		</div>		
+	</div>
+	<div class="local-play-list">
+		<ul>
+			<li class="first">
+				<a href="localplay-details.html">
+					<div class="pic">
+						<img src="images/local_play_p01.jpg" alt="">
+					</div>
+					<div class="info">
+						<h2>景福宫－北村韩屋村＋广藏市景福宫－北村韩屋村＋广藏市</h2>
+						<p>首尔市区，北韩村屋，景福宫，首尔塔</p>
+						<div class="score">
+							<div class="star-group">
+								<i class="orange star3">
+									<img src="images/star_orange.png" alt="">
+								</i>
+								<i class="grey">
+									<img src="images/star_grey.png" alt="">
+								</i>							
+							</div>
+						</div>
+						<div class="bottom">
+							<span class="price">￥<em>280</em>起</span>
+							<span class="total">已售9270</span>
+						</div>
+					</div>					
+				</a>
+			</li>
+			<li>
+				<a href="localplay-details.html">
+					<div class="pic">
+						<img src="images/local_play_p01.jpg" alt="">
+					</div>
+					<div class="info">
+						<h2>景福宫－北村韩屋村＋广藏市景福宫－北村韩屋村＋广藏市</h2>
+						<p>首尔市区，北韩村屋，景福宫，首尔塔</p>
+						<div class="score">
+							<div class="star-group">
+								<i class="orange star4">
+									<img src="images/star_orange.png" alt="">
+								</i>
+								<i class="grey">
+									<img src="images/star_grey.png" alt="">
+								</i>							
+							</div>
+						</div>
+						<div class="bottom">
+							<span class="price">￥<em>280</em>起</span>
+							<span class="total">已售9270</span>
+						</div>
+					</div>					
+				</a>
+			</li>
+			<li>
+				<a href="localplay-details.html">
+					<div class="pic">
+						<img src="images/local_play_p01.jpg" alt="">
+					</div>
+					<div class="info">
+						<h2>景福宫－北村韩屋村＋广藏市景福宫－北村韩屋村＋广藏市</h2>
+						<p>首尔市区，北韩村屋，景福宫，首尔塔</p>
+						<div class="score">
+							<div class="star-group">
+								<i class="orange star5">
+									<img src="images/star_orange.png" alt="">
+								</i>
+								<i class="grey">
+									<img src="images/star_grey.png" alt="">
+								</i>							
+							</div>
+						</div>
+						<div class="bottom">
+							<span class="price">￥<em>280</em>起</span>
+							<span class="total">已售9270</span>
+						</div>
+					</div>					
+				</a>
+			</li>
+			<li>
+				<a href="localplay-details.html">
+					<div class="pic">
+						<img src="images/local_play_p01.jpg" alt="">
+					</div>
+					<div class="info">
+						<h2>景福宫－北村韩屋村＋广藏市景福宫－北村韩屋村＋广藏市</h2>
+						<p>首尔市区，北韩村屋，景福宫，首尔塔</p>
+						<div class="score">
+							<div class="star-group">
+								<i class="orange star2">
+									<img src="images/star_orange.png" alt="">
+								</i>
+								<i class="grey">
+									<img src="images/star_grey.png" alt="">
+								</i>							
+							</div>
+						</div>
+						<div class="bottom">
+							<span class="price">￥<em>280</em>起</span>
+							<span class="total">已售9270</span>
+						</div>
+					</div>					
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+var jQuery=$.noConflict();//处理zepto与jquery冲突
+jQuery(function(){
+	var oDate=new Date();
+	var curMonthDays=new Date(oDate.getFullYear(),(oDate.getMonth()+1),0).getDate();
+	var nextMonthDays=new Date(oDate.getFullYear(),(oDate.getMonth()+2),0).getDate();
+	var afterNextMonthDays=new Date(oDate.getFullYear(),(oDate.getMonth()+3),0).getDate();
+	var curMonth=oDate.getMonth()+1;
+	var nextMonth=new Date(oDate.getFullYear(),(oDate.getMonth()+2),0).getMonth()+1;
+	var afterNextMonth=new Date(oDate.getFullYear(),(oDate.getMonth()+3),0).getMonth()+1;
+	var curMothYear=oDate.getFullYear();
+	var nextMonthYear=new Date(oDate.getFullYear(),(oDate.getMonth()+2),0).getFullYear();
+	var afterNextMonthYear=new Date(oDate.getFullYear(),(oDate.getMonth()+3),0).getFullYear();
+	var oDiv1=jQuery("<div>").addClass("mm").appendTo(jQuery("#use-date .cur-month")).text(curMonth+"月");//当月
+	var oUl1=jQuery("<ul>").addClass("day").appendTo(jQuery("#use-date .cur-month"));
+	var oDiv2=jQuery("<div>").addClass("mm").appendTo(jQuery("#use-date .next-month")).text(nextMonth+"月");//下月
+	var oUl2=jQuery("<ul>").addClass("day").appendTo(jQuery("#use-date .next-month"));
+	var oDiv3=jQuery("<div>").addClass("mm").appendTo(jQuery("#use-date .after-next-month")).text(afterNextMonth+"月");//下下月
+	var oUl3=jQuery("<ul>").addClass("day").appendTo(jQuery("#use-date .after-next-month"));	
+	var arr=["周日","周一","周二","周三","周四","周五","周六"];
+	function get(val){
+		if(val<10){
+			return '0'+val;
+		}else{
+			return val;
+		}
+	}
+	for(var i=oDate.getDate();i<=curMonthDays;i++){
+		var oLi=jQuery("<li>").appendTo(oUl1).attr("data-value",curMothYear+'-'+get(curMonth)+'-'+get(i));
+		var ospan=jQuery("<span>").appendTo(oLi).text(i);
+		var day=new Date(oDate.getFullYear(),(curMonth-1),i);
+		var op=jQuery("<p>").appendTo(oLi).text(arr[day.getDay()])
+	}
+	for(var i=1;i<=nextMonthDays;i++){
+		var oLi=jQuery("<li>").appendTo(oUl2).attr("data-value",nextMonthYear+'-'+get(nextMonth)+'-'+get(i));;
+		var ospan=jQuery("<span>").appendTo(oLi).text(i);
+		var day=new Date(oDate.getFullYear(),(nextMonth-1),i);
+		var op=jQuery("<p>").appendTo(oLi).text(arr[day.getDay()])
+	}
+	for(var i=1;i<=oDate.getDate();i++){
+		var oLi=jQuery("<li>").appendTo(oUl3).attr("data-value",afterNextMonthYear+'-'+get(afterNextMonth)+'-'+get(i));;
+		var ospan=jQuery("<span>").appendTo(oLi).text(i);
+		var day=new Date(oDate.getFullYear(),(afterNextMonth-1),i);
+		var op=jQuery("<p>").appendTo(oLi).text(arr[day.getDay()])
+	}
+	jQuery("#wrapper #use-date .cur-month ul li").eq(0).addClass("cur");
+	function autoResize(){
+		var width=0;
+		jQuery("#wrapper #use-date .month").each(function(i){
+			width+=jQuery(this).width()+1;
+		})
+		jQuery("#wrapper #use-date .box").width(width);	
+	}
+	autoResize();
+	jQuery(window).resize(function(){
+		autoResize();
+	})
+})
+jQuery(document).ready(function(){
+	jQuery("#range_1").ionRangeSlider({
+		min: 0,
+		max: 5000,
+		from:0,
+		to: 1000,
+		type: 'double',//设置类型
+		step: 1,
+		prefix: "",//设置数值前缀
+		postfix: "元",//设置数值后缀
+		prettify: true,
+		grid: true,
+		onChange:function(){
+			var val=jQuery("#range_1").val();//获取input的value值;
+			var arr=val.split(";");
+		}
+	});
+	var slider = jQuery("#range_1").data("ionRangeSlider");
+	var clear=jQuery("#wrapper #price-range .range-btn a.clear");
+	clear.click(function(){
+		slider.reset();
+	})
+});	
+</script>
+<script type="text/javascript">
+//使用时间滚动;
+$(function(){
+	var myScroll;
+	var arr=[];
+	(function loaded(){
+		myScroll = new IScroll('#use-date', {
+			scrollX: true,
+			scrollY:false,
+			disableMouse: true,
+			disablePointer: true,
+			bounce:false,
+			probeType: 3, 
+			mouseWheel: true 
+		});
+		$("#wrapper #use-date .month").each(function(){
+			var left=$(this).offset().left;
+			arr.push(left);
+		})
+		function updatePosition () {
+			var x=this.x;
+			for(var i=0;i<arr.length;i++){
+				if(x<-arr[i]){
+					$("#wrapper #use-date .month").eq(i).find(".mm").addClass("fixed").css({
+						left:-x
+					});
+					$("#wrapper #use-date .month").eq(i).siblings().find(".mm").removeClass("fixed");
+				}else{
+					$("#wrapper #use-date .month").eq(i).find(".mm").removeClass("fixed");
+				}
+			}
+		}
+		myScroll.on('scroll', updatePosition);
+		myScroll.on('scrollEnd', updatePosition);		
+	})();			
+})	
+</script>
+<script type="text/javascript">
+$(function(){
+	var aLi=$("#fixed-top .filter ul li");
+	var filterList=$("#wrapper .filter-list");
+	var oLi=filterList.find("li");
+	var alpha=$("#wrapper .alpha-floor");
+	var determine=$("#wrapper #price-range .range-btn a.determine");
+	var input=$("#wrapper #price-range .range-area input");
+	var index=0;
+	aLi.tap(function(){		
+		index=$(this).index();
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+			filterList.eq(index).css({visibility:"hidden"});
+			alpha.hide();
+		}else{
+			$(this).addClass("active").siblings().removeClass("active");
+			filterList.eq(index).css({visibility:"visible"}).siblings().css({visibility:"hidden"});
+			alpha.show();			
+		}			
+	})
+	oLi.tap(function(){
+		var i=$(this).parents(".filter-list").index();
+		var text=$(this).attr("data-value");
+		$(this).addClass("cur").siblings().removeClass("cur");
+		aLi.eq(i).removeClass("active").find("span").text(text);
+		$(this).parents(".filter-list").css({visibility:"hidden"});
+		alpha.hide();
+	})
+	determine.tap(function(){
+		var i=$(this).parents(".filter-list").index();
+		aLi.eq(i).removeClass("active");
+		alpha.hide();
+		determine.parents(".filter-list").css({visibility:"hidden"});
+	})
+	alpha.tap(function(){
+		alpha.hide();
+		filterList.css({visibility:"hidden"});
+		aLi.removeClass('active');
+	})
+	oLi.on("touchend",function(e){
+		e.preventDefault()
+	})
+	determine.on("touchend",function(e){
+		e.preventDefault()
+	})
+	alpha.on("touchend",function(e){
+		e.preventDefault()
+	})		
+})	
+</script>	
+</body>
+</html>

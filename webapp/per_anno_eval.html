@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>匿名评价</title>
+<link href="css/person.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/common.js"></script>
+</head>
+
+<body bgcolor="#f1f1f1" id="per_eval">
+<div id="nav_top">
+	<a href="javascript:history.back()" class="go_back"></a>
+    <span class="left_center">匿名评价</span>
+</div>
+<ul id="per_main">
+	<li>
+        <div class="li_mid">
+        	<a href="#">
+                <div class="image"><img src="images/per_wait_waite_main_03.png"></div>
+                <div class="image_r">
+                    <h2>萧山国际机场－萧山国际机场</h2>
+                    <p>
+                        <span class="just">订 单 号</span>
+                        <span>32736202328</span>
+                    </p>
+                    <p>
+                        <span class="just">用车时间</span>
+                        <span>2016-06-22 14:00</span>
+                    </p>
+                </div>
+            </a>
+        </div>
+        <div class="eval_p eval_p_top">
+        	<span>车况</span>
+            <ul class="ul_eval">
+            	<li></li>
+            	<li></li>
+            	<li></li>
+            	<li></li>
+            	<li></li>
+            </ul>
+        </div>
+        <div class="eval_p eval_p_bot">
+        	<span>服务</span>
+            <ul class="ul_eval">
+            	<li></li>
+            	<li></li>
+            	<li></li>
+            	<li></li>
+            	<li></li>
+            </ul>
+        </div>
+    </li>
+</ul>
+<textarea id="eval_text" placeholder="填写您的评论"></textarea>
+<input type="submit" value="提交" class="eval_sub">
+
+<!--没有网络下显示-->
+<div id="no_network">
+	<div class="image"><img src="images/no_network_03.png"></div>
+    <p>呃，网络不给力，请点击屏幕重新加载～</p>
+</div>
+<!--没有网络下显示结束-->
+
+<script>
+var ulNodes=document.getElementsByClassName("ul_eval")
+for(var i=0;i<ulNodes.length;i++){
+	ulNodes[i].onclick=function(e){
+		var e=e||window.event
+		var liNodes=this.getElementsByTagName("li")
+		for(var i=0;i<liNodes.length;i++){
+			liNodes[i].index=i;
+			liNodes[i].style.cssText="background:url(images/eval_start_06.png) no-repeat;background-size:0.36rem 0.35rem;"
+			var tarIndex=e.target.index  //tarIndex是：星星的个数-1
+			for(var j=0;j<liNodes.length;j++){
+				if(liNodes[j].index<=tarIndex){
+				liNodes[j].style.cssText="background:url(images/eval_start_03.png) no-repeat;background-size:0.36rem 0.35rem;"
+					}
+				}
+			}
+		}
+	}
+</script>
+
+</body>
+</html>

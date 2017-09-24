@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>我的优惠券</title>
+<script type="text/javascript" src="js/common.js"></script>
+<link href="css/person.css" rel="stylesheet" type="text/css">
+<script src="js/jquery1-11-1.js"></script>
+<script>
+$(function(){
+	$("#per_cou #per_nav_ul a").click(function(e) {
+        $("#per_cou #per_nav_ul a").removeClass("cur");
+		$(this).addClass("cur");
+		$("#no_use,#over_use,#in_use").hide();
+		$($(this).attr("href")).show();
+		return false;
+    });
+	$("#nav_top .top_m").click(function(e) {
+		$("#pop_de_bj,#pop_de").show()
+	});
+	$("#hide_pop_de").click(function(e) {
+		$("#pop_de_bj,#pop_de").hide()
+	});
+	})
+</script>
+</head>
+
+<body id="per_cou">
+<div id="nav_top">
+	<a href="javascript:history.back()" class="go_back"></a>
+    <span class="left_center">我的优惠券</span>
+    <a class="top_r" href="per_coupon_add.html"></a>
+    <a class="top_m"></a>
+</div>
+<ul id="per_nav_ul">
+	<li><a href="#no_use" class="cur">未使用（5）</a></li>
+	<li><a href="#in_use">已使用（0）</a></li>
+	<li><a href="#over_use">已过期（0）</a></li>
+</ul>
+<div style="height:1.86rem"></div>
+<div id="no_use">
+    <ul class="cou_list">
+        <li>
+            <div class="left">
+                <h2>¥<big>500</big></h2>
+                <p>满2000可用</p>
+            </div>
+            <div class="right">
+                <p>500元代金券</p>
+                <ul>
+                    <li>包车游</li>
+                    <li>全球所有城市</li>
+                    <li>2016.06.30到期<span class="f60">(仅剩3天)</span></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="left">
+                <h2><big>7.8</big>折</h2>
+                <p>满2000可用</p>
+            </div>
+            <div class="right">
+                <p>500元代金券</p>
+                <ul>
+                    <li>包车游</li>
+                    <li>全球所有城市</li>
+                    <li>2016.06.30到期<span class="f60">(仅剩3天)</span></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+<div id="in_use" style="display:none">
+    <ul class="cou_list">
+        <li>
+            <div class="left">
+                <h2>¥<big>500</big></h2>
+                <p>满2000可用</p>
+            </div>
+            <div class="right">
+                <p>500元代金券</p>
+                <ul>
+                    <li>包车游</li>
+                    <li>全球所有城市</li>
+                    <li>2016.06.30到期 </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="left">
+                <h2><big>7.8</big>折</h2>
+                <p>满2000可用</p>
+            </div>
+            <div class="right">
+                <p>500元代金券</p>
+                <ul>
+                    <li>包车游</li>
+                    <li>全球所有城市</li>
+                    <li>2016.06.30到期 </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+<div id="over_use" style="display:none">
+    <ul class="cou_list">
+        <li>
+            <div class="left">
+                <h2>¥<big>500</big></h2>
+                <p>满2000可用</p>
+            </div>
+            <div class="right">
+                <p>500元代金券</p>
+                <ul>
+                    <li>包车游</li>
+                    <li>全球所有城市</li>
+                    <li>2016.06.30到期 </li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="left">
+                <h2><big>7.8</big>折</h2>
+                <p>满2000可用</p>
+            </div>
+            <div class="right">
+                <p>500元代金券</p>
+                <ul>
+                    <li>包车游</li>
+                    <li>全球所有城市</li>
+                    <li>2016.06.30到期 </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div id="pop_de" class="left_center" style="display:none;">
+	<h1>优惠券规则<span id="hide_pop_de"></span></h1>
+    <p class="cou_pop_p">新手注册app享受¥20优惠券，有效期：90天（注册当天开始计算） </p>
+    <p class="cou_pop_p">老用户邀请新用户，新用户注册成功，页面自动弹出兑换码，兑换进入优惠券池，随机（¥10-50），有效期：90天（注册当天开始计算）</p>
+    <p class="cou_pop_p">新用户关注服务号，系统自动默认注册用户，赠送20元优惠券有效期：90天（注册当天开始计算），信息同步app</p>
+    </div>
+</div>
+<div id="pop_de_bj"></div>
+</body>
+</html>

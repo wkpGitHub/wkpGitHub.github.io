@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>我要开票</title>
+<script type="text/javascript" src="js/common.js"></script>
+<link href="css/person.css" rel="stylesheet" type="text/css">
+<script src="js/jquery1-11-1.js"></script>
+</head>
+
+<body id="per_bill_write">
+<div id="nav_top">
+	<a href="javascript:history.back()" class="go_back"></a>
+    <span class="left_center">我要开票</span>
+    <a href="per_bill.html" class="link_wait">我的发票</a>
+</div>
+<ul id="bill_write">
+	<li>
+    	<a href="#" class="cur">
+        	<h2>萧山国际机场－Aam-daero 29beon-gil</h2>
+            <div class="bot">
+            	<div class="image"><img src="images/bill_write_07.png"></div>
+                <ul class="image_r">
+                	<li>
+                        <p>订 单 号</p>
+                        <p>32736202328</p>
+                    </li>
+                	<li>
+                        <p>用车时间</p>
+                        <p>2016-06-22 14:00</p>
+                    </li>
+                	<li>
+                        <p>订单金额</p>
+                        <p class="f60">¥<span class="money">2000</span></p>
+                    </li>
+                </ul>
+            </div>
+        </a>
+    </li>
+	<li>
+    	<a href="#" class="cur">
+        	<h2>萧山国际机场－Aam-daero 29beon-gil</h2>
+            <div class="bot">
+            	<div class="image"><img src="images/bill_write_07.png"></div>
+                <ul class="image_r">
+                	<li>
+                        <p>订 单 号</p>
+                        <p>32736202328</p>
+                    </li>
+                	<li>
+                        <p>用车时间</p>
+                        <p>2016-06-22 14:00</p>
+                    </li>
+                	<li>
+                        <p>订单金额</p>
+                        <p class="f60">¥<span class="money">800</span></p>
+                    </li>
+                </ul>
+            </div>
+        </a>
+    </li>
+	<li>
+    	<a href="#" class="cur">
+        	<h2>萧山国际机场－Aam-daero 29beon-gil</h2>
+            <div class="bot">
+            	<div class="image"><img src="images/bill_write_07.png"></div>
+                <ul class="image_r">
+                	<li>
+                        <p>订 单 号</p>
+                        <p>32736202328</p>
+                    </li>
+                	<li>
+                        <p>用车时间</p>
+                        <p>2016-06-22 14:00</p>
+                    </li>
+                	<li>
+                        <p>订单金额</p>
+                        <p class="f60">¥<span class="money">800</span></p>
+                    </li>
+                </ul>
+            </div>
+        </a>
+    </li>
+	<li>
+    	<a href="#" class="">
+        	<h2>萧山国际机场－Aam-daero 29beon-gil</h2>
+            <div class="bot">
+            	<div class="image"><img src="images/bill_write_07.png"></div>
+                <ul class="image_r">
+                	<li>
+                        <p>订 单 号</p>
+                        <p>32736202328</p>
+                    </li>
+                	<li>
+                        <p>用车时间</p>
+                        <p>2016-06-22 14:00</p>
+                    </li>
+                	<li>
+                        <p>订单金额</p>
+                        <p class="f60">¥<span class="money">800</span></p>
+                    </li>
+                </ul>
+            </div>
+        </a>
+    </li>
+	<li>
+    	<a href="#" class="">
+        	<h2>萧山国际机场－Aam-daero 29beon-gil</h2>
+            <div class="bot">
+            	<div class="image"><img src="images/bill_write_07.png"></div>
+                <ul class="image_r">
+                	<li>
+                        <p>订 单 号</p>
+                        <p>32736202328</p>
+                    </li>
+                	<li>
+                        <p>用车时间</p>
+                        <p>2016-06-22 14:00</p>
+                    </li>
+                	<li>
+                        <p>订单金额</p>
+                        <p class="f60">¥<span class="money">1000</span></p>
+                    </li>
+                </ul>
+            </div>
+        </a>
+    </li>
+</ul>
+<div class="footer">
+	<span class="all_choose">全选</span>
+    <p>选中<span class="f60" id="sum_num">2</span>笔订单，共<span class="f60" id="sum_mon">4000</span>元</p>
+    <a href="per_bill_writeIn.html">下一步</a>
+</div>
+
+<!--没有发票-->
+<div id="no_bill" style="display:none;">
+	<div class="image"><img src="images/no_bill_03.png"></div>
+    <p>暂无可开发票</p>
+    <a href="#">随便看看</a>
+</div>
+<!--没有发票结束-->
+
+<script>
+$(".all_choose").click(function(e) {
+    $(this).toggleClass("all_cho_cur")
+	if($(this).hasClass("all_cho_cur")){
+		$("#bill_write>li>a").addClass("cur")
+		var bill_write=document.getElementById("bill_write")
+		var curLen=bill_write.getElementsByClassName("cur").length
+		var curNode=bill_write.getElementsByClassName("cur")	
+		var sumMoney=0
+		for(var i=0;i<curLen;i++){
+			var MoneyNode=curNode[i].getElementsByClassName("money")
+			var Money=$(MoneyNode).text()*1
+			sumMoney+=Money
+			}
+		$("#sum_num").text(curLen)
+		$("#sum_mon").text(sumMoney)
+		}
+	else{
+		$("#bill_write>li>a").removeClass("cur")
+		$("#sum_num").text(0)
+		$("#sum_mon").text(0)
+		}	
+});
+$("#bill_write>li>a").click(function(e) {
+    $(this).toggleClass("cur")
+	var bill_write=document.getElementById("bill_write")
+	var curLen=bill_write.getElementsByClassName("cur").length
+	var aLen=bill_write.getElementsByTagName("a").length
+	if(aLen==curLen){
+		$(".all_choose").addClass("all_cho_cur")
+		}
+	else{
+		$(".all_choose").removeClass("all_cho_cur")
+		}	
+	var curNode=bill_write.getElementsByClassName("cur")	
+	var sumMoney=0
+	for(var i=0;i<curLen;i++){
+		var MoneyNode=curNode[i].getElementsByClassName("money")
+		var Money=$(MoneyNode).text()*1
+		sumMoney+=Money
+		}
+	$("#sum_num").text(curLen)
+	$("#sum_mon").text(sumMoney)
+	
+	return false
+});
+</script>
+</body>
+</html>

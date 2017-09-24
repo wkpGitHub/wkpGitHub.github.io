@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>选择国家和地区</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" href="css/common.css">
+<script type="text/javascript" src="js/width-conversion.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/fx.js"></script>
+<script type="text/javascript" src="js/fx_methods.js"></script>
+<script type="text/javascript" src="js/touch.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body class="place place-search city-search code-search">
+<header>
+	<div class="title">
+		<a href="javascript:history.go(-1)" class="left"></a>
+		<span>城市选择</span>
+	</div>
+	<div class="search-box">
+		<input type="text" placeholder="请输入名称或首字母(大写)" id="search">
+	</div>
+</header>
+<div id="wrapper">
+	<div class="classify city">
+		<div class="list">
+			<div class="part" data-number="A">
+				<div class="divider">A</div>
+				<ul>
+					<li class="first">
+						<h6>阿尔巴尼亚</h6>
+						<p>Albania</p>
+						<span class="code">+355</span>
+					</li>
+					<li>
+						<h6>阿尔巴尼亚</h6>
+						<p>Albania</p>
+						<span class="code">+355</span>
+					</li>
+					<li>
+						<h6>阿尔巴尼亚</h6>
+						<p>Albania</p>
+						<span class="code">+355</span>
+					</li>
+					<li>
+						<h6>阿尔巴尼亚</h6>
+						<p>Albania</p>
+						<span class="code">+355</span>
+					</li>
+					<li>
+						<h6>阿尔巴尼亚</h6>
+						<p>Albania</p>
+						<span class="code">+355</span>
+					</li>
+					<li>
+						<h6>阿尔巴尼亚</h6>
+						<p>Albania</p>
+						<span class="code">+355</span>
+					</li>
+					<li>
+						<h6>阿尔巴尼亚</h6>
+						<p>Albania</p>
+						<span class="code">+355</span>
+					</li>
+				</ul>				
+			</div>
+			<div class="part" data-number="B">
+				<div class="divider">B</div>
+				<ul>
+					<li class="first">
+						<h6>巴哈马</h6>
+						<p>Bahamas</p>
+						<span class="code">+1242</span>
+					</li>
+					<li>
+						<h6>巴哈马</h6>
+						<p>Bahamas</p>
+						<span class="code">+1242</span>
+					</li>
+					<li>
+						<h6>巴哈马</h6>
+						<p>Bahamas</p>
+						<span class="code">+1242</span>
+					</li>
+					<li>
+						<h6>巴哈马</h6>
+						<p>Bahamas</p>
+						<span class="code">+1242</span>
+					</li>
+					<li>
+						<h6>巴哈马</h6>
+						<p>Bahamas</p>
+						<span class="code">+1242</span>
+					</li>
+					<li>
+						<h6>巴哈马</h6>
+						<p>Bahamas</p>
+						<span class="code">+1242</span>
+					</li>
+				</ul>				
+			</div>
+			<div class="part" data-number="C">
+				<div class="divider">C</div>
+				<ul>
+					<li class="first">
+						<h6>朝鲜</h6>
+						<p>North Korea</p>
+						<span class="code">+850</span>
+					</li>
+				</ul>				
+			</div>
+		</div>
+	</div>
+</div>
+<div id="side-nav">
+	<span data-value="A">A</span>
+	<span data-value="B">B</span>
+	<span data-value="C">C</span>
+	<span data-value="D">D</span>
+	<span data-value="E">E</span>
+	<span data-value="F">F</span>
+	<span data-value="G">G</span>
+	<span data-value="H">H</span>
+	<span data-value="I">I</span>
+	<span data-value="J">J</span>
+	<span data-value="K">K</span>
+	<span data-value="L">L</span>
+	<span data-value="M">M</span>
+	<span data-value="N">N</span>
+	<span data-value="O">O</span>
+	<span data-value="P">P</span>
+	<span data-value="Q">Q</span>
+	<span data-value="R">R</span>
+	<span data-value="S">S</span>
+	<span data-value="T">T</span>
+	<span data-value="U">U</span>
+	<span data-value="V">V</span>
+	<span data-value="W">W</span>
+	<span data-value="X">X</span>
+	<span data-value="Y">Y</span>
+	<span data-value="Z">Z</span>
+</div>
+<script type="text/javascript">
+$(function(){
+	$("#side-nav span").tap(function(e){
+		e.preventDefault();
+		var val=$(this).attr("data-value");
+		var top;
+		$("*").each(function(){
+			if($(this).attr("data-number")==val){
+				top=$(this).offset().top-$("#wrapper").offset().top;
+			}
+		})
+		$(window).scrollTop(top)
+	})
+})
+</script>
+<script type="text/javascript">
+var jQuery=$.noConflict();//处理zepto与jquery冲突
+jQuery(function(){
+	var $history=jQuery("#wrapper .history-search");
+	var $hot=jQuery("#wrapper .hot-search");
+	var $part=jQuery(".city .list .part");
+	var $li=jQuery(".city .list .part ul li");
+	jQuery("#search").keyup(function(){
+		var i=0;
+		jQuery(window).scrollTop(0);
+		if(jQuery(this).val().length>0){
+			$history.hide();
+			$hot.hide();
+			$part.hide();
+			$li.hide().removeClass("show");
+			$li.filter(":contains('"+(jQuery(this).val())+"')").show().addClass("show").parents($part).show();	
+			$li.each(function(){
+				if(jQuery(this).hasClass("show")){
+					i+=1;
+					jQuery(this).attr("date-index",i);
+					if(jQuery(this).attr("date-index")==1){
+						jQuery(this).addClass("first")
+					}else{
+						jQuery(this).removeClass("first")
+					}
+				}else{
+					jQuery(this).removeAttr("date-index");
+				}
+			})
+		}else{
+			$history.show();
+			$hot.show();
+			$part.show();
+			$li.show().removeClass("show");
+		}
+	})
+})	
+</script>    
+</body>
+</html>

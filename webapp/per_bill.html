@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+<title>我的发票</title>
+<link href="css/person.css" rel="stylesheet" type="text/css">
+<script src="js/jquery1-11-1.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+</head>
+
+<body id="per_bill">
+<div id="nav_top">
+	<a href="javascript:history.back()" class="go_back"></a>
+    <span class="left_center">我的发票</span>
+    <a href="per_bill_write.html" class="link_wait">我要开票</a>
+</div>
+<ul id="bill_list">
+	<li>
+        <a href="per_bill_detail.html">
+            <h2>发票抬头： 杭州易途吧信息科技有限公司</h2>
+            <p>
+            	<span class="left">发票金额</span>
+            	<span class="mid f60">¥2000</span>
+            	<span class="right c29f">已开具</span>
+            </p>
+            <p>
+            	<span class="left">发生时间</span>
+            	<span class="mid">2016-06-22 14:00：59</span>
+            </p>
+        </a>
+    </li>
+	<li>
+        <a href="per_bill_detail.html">
+            <h2>发票抬头： 杭州易途吧信息科技有限公司</h2>
+            <p>
+            	<span class="left">发票金额</span>
+            	<span class="mid f60">¥2000</span>
+            	<span class="right f32b">已投寄</span>
+            </p>
+            <p>
+            	<span class="left">发生时间</span>
+            	<span class="mid">2016-06-22 14:00：59</span>
+            </p>
+        </a>
+    </li>
+	<li>
+        <a href="per_bill_detail.html">
+            <h2>发票抬头： 杭州易途吧信息科技有限公司</h2>
+            <p>
+            	<span class="left">发票金额</span>
+            	<span class="mid f60">¥2000</span>
+            	<span class="right f60">已拒开</span>
+            </p>
+            <p>
+            	<span class="left">发生时间</span>
+            	<span class="mid">2016-06-22 14:00：59</span>
+            </p>
+        </a>
+    </li>
+</ul>
+
+<!--没有发票-->
+<div id="no_bill" style="display:none;">
+	<div class="image"><img src="images/no_bill_03.png"></div>
+    <p>暂无可开发票</p>
+    <a href="#">随便看看</a>
+</div>
+<!--没有发票结束-->
+
+</body>
+</html>

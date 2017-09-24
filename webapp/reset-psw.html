@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>找回密码</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="css/user.css" rel="stylesheet">
+<script type="text/javascript" src="js/width-conversion.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/fx.js"></script>
+<script type="text/javascript" src="js/fx_methods.js"></script>
+<script type="text/javascript" src="js/touch.js"></script>
+</head>
+<body id="user" class="reset-psw">
+<header>
+	<a href="javascript:history.go(-1)" class="back">&lt;</a>
+	<span>找回密码</span>	
+</header>
+<div id="wrapper">
+	<div class="form">
+		<form action="">
+			<ul>
+				<li class="first">
+					<div class="fields">手机号码</div>
+					<div class="input-area phone-number">
+						<a href="code-search.html">+86</a>
+						<input type="text" placeholder="输入有效手机号码">
+					</div>
+				</li>
+				<li>
+					<div class="fields">验证码</div>
+					<div class="input-area yzm">
+						<input type="text" placeholder="输入验证码">
+						<span>获取验证码</span>
+					</div>
+				</li>
+			</ul>
+			<ul>
+				<li class="first">
+					<div class="fields">密码</div>
+					<div class="input-area phone-number">
+						<input type="password" placeholder="输入密码">
+					</div>
+				</li>
+			</ul>			
+			<div class="submit">
+				<button type="button">确&ensp;定</button>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	var h=$(window).height();
+	console.log(h)
+	$(window).resize(function(){
+		var h1=$(window).height();
+		if(h1<h){
+			$("footer").css({
+				visibility:"hidden"
+			})
+		}else{
+			$("footer").css({
+				visibility:"visible"
+			})			
+		}
+	})
+})	
+</script>   
+</body>
+</html>
