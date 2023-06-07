@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>知识图谱</title>
-  <script src="./quadtree.js"></script>
+  <title>Document</title>
+  <script src="./quadtree-js/quadtree.min.js"></script>
   <script src="d3.v5.js"></script>
   <script src="./c-force.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
@@ -35,7 +35,7 @@
     }
 
     .link-path:hover {
-      stroke-opacity: 0.8;
+      stroke-opacity: 1;
     }
 
     .link-fade-in {
@@ -61,11 +61,22 @@
     .circle {
       stroke-width: 1px;
     }
-   .out-circle{
+
+    .out-circle {
       transform: rotate(180deg);
-      
+
     }
-    .inner-circle{
+
+    .link-circle {
+      transform: rotate(180deg);
+      stroke-width: 2px;
+      stroke-opacity: 0.8;
+      stroke: #fff;
+      fill: none;
+      cursor: crosshair;
+    }
+
+    .inner-circle {
       transform: rotate(180deg) scale(0.7);
     }
 
@@ -78,9 +89,9 @@
     }
 
     .link-text {
-      font-size: 12px;
+      font-size: 8px;
       fill: #fff;
-      fill-opacity: 0.3;
+      fill-opacity: 0.8;
       text-anchor: middle;
       user-select: none;
     }
@@ -137,7 +148,7 @@
     d3.select('svg').select('defs').append('marker').attr('id', 'arrow-marker-end').attr('markerWidth', 8).attr('markerHeight', 8).attr('refX', 5).attr('refY', 4)
       .attr('viewBox', '0 0 8 8').attr('fill', '#fff').attr('orient', 'auto').append('path').attr('d', 'M1,1L7,4L1,7z')
 
-    d3.json("./flare.json").then((data) => {
+    d3.json("./d3-cookbook-v2/data/flare.json").then((data) => {
       // data.children.push(data)
       init(data)
     })
@@ -147,8 +158,8 @@
         item.id = getId()
         return item
       }); // <-B
-      links = root.links().map((item, index) => {
-        item.index = index
+      links = root.links().map(item => {
+        item.id = item.target.id + '__' + item.source.id
         item.relation = item.target.data.name + '__' + item.source.data.name
         return item
       }); // <-C
@@ -188,7 +199,7 @@
       }
       function mouseup () {
         if (findNode) {
-          links.push({ target: findNode, source, index: links.length })
+          links.push({ target: findNode, source, id: findNode.id + '__' + source.id, relation: findNode.data.name + '__' + source.data.name })
           updateLinks(links)
           simulation.force('link', d3.forceLink(links).distance(30))
         }
@@ -257,36 +268,23 @@
 
     function updateNodes (nodes) {
       const { innerFill, innerStroke, outerFill, outerStroke } = set16ToRgb(nodeColor)
-      var updateSelections = gNodes.selectAll('g.g-circle').data(nodes)
+      var updateSelections = gNodes.selectAll('g.g-circle').data(nodes.filter(d => !d.hidden), d => d.id)
       var enterSelections = updateSelections.enter().append('g').classed('g-circle', true)
-      enterSelections.append('path').attr('d', nodePath).classed('out-circle', true)
-      enterSelections.append('path').attr('d', nodePath).classed('inner-circle', true)
+      enterSelections.append('path').classed('out-circle', true)
+      enterSelections.append('path').classed('inner-circle', true)
       enterSelections.append('text').classed('node-text', true).attr('dx', 15).attr('dy', 4).text(d => d.data.name)
 
-      var mergeSelections = updateSelections.merge(enterSelections).attr('opacity', d => d.hidden ? '0.2' : '1').attr('transform', d => `translate(${d.x},${d.y})`)
-        .on('click', function (d) {
-
-          const that = d3.select(this)
-          if (this.hasAttribute('selected')) return false
-          this.setAttribute('selected', true)
-          d3.select(this).append('path').attr('id', 'selectPath').attr('d', drawOutLine()).attr('fill', '#fff').attr('fill-opacity', 0.8).on('mousedown', function () {
-            const e = d3.event
-            e.stopPropagation()
-            const transform = container.transform || { x: 0, y: 0, k: 1 }
-            let x = d.x * transform.k + transform.x
-            let y = d.y * transform.k + transform.y
-            drawLine({ parent: d3.select('svg'), startx: x, starty: y, source: d })
-          })
-          setR(d)
-        })
+      var mergeSelections = updateSelections.merge(enterSelections).attr('opacity', d => d.dark ? '0.2' : '1').attr('transform', d => `translate(${d.x},${d.y})`)
         // .on('mousedown', function (d) {
         //   d3.event.stopPropagation()
 
         // })
-        .on('mouseover', function (d) {
+        .on('mouseenter', function (d) {
+          // d3.event.stopPropagation()
+          d.active = true
           links.forEach(item => {
-            item.source.hidden = true
-            item.target.hidden = true
+            item.source.dark = true
+            item.target.dark = true
             if (item.source.id === d.id) {
               item.current = true
             }
@@ -296,19 +294,57 @@
           })
           links.forEach(item => {
             if (item.current) {
-              item.source.hidden = false
-              item.target.hidden = false
+              item.source.dark = false
+              item.target.dark = false
             }
+          })
+
+
+          // 添加 
+          d3.select(this).append('path').classed('link-circle', true).attr('id', 'selectPath').attr('d', nodePath).on('mousedown', function (d) {
+            const e = d3.event
+            e.stopPropagation()
+            const transform = container.transform || { x: 0, y: 0, k: 1 }
+            let x = d.x * transform.k + transform.x
+            let y = d.y * transform.k + transform.y
+            drawLine({ parent: d3.select('svg'), startx: x, starty: y, source: d })
           })
 
           updateNodes(nodes)
           updateLinks(links)
         })
-        .on('mouseout', function (d) {
+        .on('mouseleave', function (d) {
+          // d3.event.stopPropagation()
+          console.log('levae')
+          d3.select('#selectPath').remove()
+          d.active = false
           links.forEach(item => {
             delete item.current
-            delete item.source.hidden
-            delete item.target.hidden
+            delete item.source.dark
+            delete item.target.dark
+          })
+          updateNodes(nodes)
+          updateLinks(links)
+        })
+        .on('click', function (d) {
+          setR(d)
+        })
+        .on('dblclick', function (d) {
+          d3.event.stopPropagation()
+          d.hiddenChildren = !d.hiddenChildren
+          const linksId = d.links().map(l => {
+            return l.target.id + '__' + l.source.id
+          })
+          links.forEach(link => {
+            if (linksId.includes(link.id)) {
+              link.hidden = link.target.parent.hiddenChildren || d.hiddenChildren
+            }
+          })
+          d.descendants().forEach(node => {
+            // 排除自己
+            if (node.id !== d.id) {
+              node.hidden = node.parent.hiddenChildren || d.hiddenChildren
+            }
           })
           updateNodes(nodes)
           updateLinks(links)
@@ -322,7 +358,7 @@
         setTextCoors(d)
       })
 
-      
+
       updateOpc(nodes, mergeSelections)
 
       updateSelections.exit().remove()
@@ -358,10 +394,10 @@
     }
 
     function updateLinks (links) {
-      // updateTexts(links)
 
-      var updateLinks = gLinks.selectAll('path').data(links)
-      var enterLinks = updateLinks.enter().append('path').classed('link-path', true)
+
+      var updateLinks = gLinks.selectAll('path').data(links.filter(d => !d.hidden), d => d.id)
+      var enterLinks = updateLinks.enter().append('path').classed('link-path', true).attr('id', d => d.id)
       // enterLinks.each(function(d, index) {
       //   const getMiddlePoint = () => {
       //     const { source, target } = d
@@ -377,42 +413,50 @@
         const { source, target } = d
         const { _x, _y } = getCos(source, target, 12)
         return generateLinkPath(source, { x: _x, y: _y })
-      }).attr('marker-end', 'url(#arrow-marker-end)').attr('opacity', function (d) {
-        clearInterval(d.feiInterval)
-        clearTimeout(d.feiTimer)
-        hightLight.bind(this)(d)
-        // d.updateRelationPath()
+      }).attr('marker-end', 'url(#arrow-marker-end)').classed('link-fade-out', d => d.current)
+        .attr('opacity', function (d) {
+          // clearInterval(d.feiInterval)
+          // clearTimeout(d.feiTimer)
+          // hightLight.bind(this)(d)
+          // d.updateRelationPath()
 
-        return d.current ? 1 : 0.2
-      })
+          return d.current ? 1 : 0.2
+        }).on('click', function (d) {
+          console.log(d)
+        })
 
       updateLinks.exit().remove()
+      updateTexts(links)
     }
 
     function updateTexts (links) {
-      var updateTexts = gTexts.selectAll('g.gtext').data(links)
+      var updateTexts = gTexts.selectAll('g.gtext').data(links.filter(d => d.current).filter(d => !d.hidden), d => d.id)
       var enterTexts = updateTexts.enter().append('g').classed('gtext', true)
-      enterTexts.append('text').classed('link-text', true).text(d => d.relation).attr('dy', 5).attr('width', function (d) {
+      enterTexts.append('text').classed('link-text', true).text(d => d.relation).attr('dy', 3).attr('width', function (d) {
         d.textWidth = this.getComputedTextLength() + 8
       })
-      enterTexts.insert('rect', 'text').attr('width', d => d.textWidth).attr('height', 20).attr('fill', '#06101d').attr('x', d => -d.textWidth / 2).attr('y', -10)
+      enterTexts.insert('rect', 'text').attr('width', d => d.textWidth).attr('height', 16).attr('fill', '#06101d').attr('x', d => -d.textWidth / 2).attr('y', -8)
       updateTexts.merge(enterTexts).attr('transform', d => {
-        const { relationPointer, relationRotate = 0 } = d
+        const { source, target } = d
+        const pathline = document.getElementById(d.id)
+        const len = pathline.getTotalLength()
+        const { x, y } = pathline.getPointAtLength(0.5 * len)
+        const relationRotate = Math.atan((target.y - source.y) / (target.x - source.x)) * 360 / (2 * Math.PI)
 
-        return relationPointer ? `translate(${relationPointer.x},${relationPointer.y}) rotate(${relationRotate})` : ''
+        return `translate(${x},${y}) rotate(${relationRotate})`
       })
 
       updateTexts.exit().remove()
     }
 
-    d3.select('svg').node().addEventListener('mousedown', (e) => {
-      var selectPath = d3.select('#selectPath')
-      if (e.target.parentNode.hasAttribute('selected')) return false
-      if (selectPath) {
-        selectPath.node()?.parentNode.removeAttribute('selected')
-        selectPath.remove()
-      }
-    }, true)
+    // d3.select('svg').node().addEventListener('mousedown', (e) => {
+    //   var selectPath = d3.select('#selectPath')
+    //   if (e.target.parentNode.hasAttribute('selected')) return false
+    //   if (selectPath) {
+    //     selectPath.node()?.parentNode.removeAttribute('selected')
+    //     selectPath.remove()
+    //   }
+    // }, true)
 
     const gui = new dat.GUI();
     gui.addColor({ '选择颜色': '#00fff0' }, '选择颜色').onChange(v => {
@@ -420,7 +464,7 @@
       updateNodes(nodes)
     })
     gui.add({ '选择图形': 'M6.123233995736766e-16,-10A10,10,0,1,1,-6.123233995736766e-16,10A10,10,0,1,1,6.123233995736766e-16,-10Z' }, '选择图形', {
-      '圆形': 'M6.123233995736766e-16,-10A10,10,0,1,1,-6.123233995736766e-16,10A10,10,0,1,1,6.123233995736766e-16,-10Z', 
+      '圆形': 'M6.123233995736766e-16,-10A10,10,0,1,1,-6.123233995736766e-16,10A10,10,0,1,1,6.123233995736766e-16,-10Z',
       '五角星': 'M 0,10 L3,4 L9,3.8 L4.8,-1.3 L6,-8 L0,-5 L-6,-8 L-4.8,-1.3 L-9,3.8 L-3,4Z'
     }).onChange(v => {
       nodePath = v
