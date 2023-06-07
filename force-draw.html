@@ -148,7 +148,7 @@
     d3.select('svg').select('defs').append('marker').attr('id', 'arrow-marker-end').attr('markerWidth', 8).attr('markerHeight', 8).attr('refX', 5).attr('refY', 4)
       .attr('viewBox', '0 0 8 8').attr('fill', '#fff').attr('orient', 'auto').append('path').attr('d', 'M1,1L7,4L1,7z')
 
-    d3.json("./d3-cookbook-v2/data/flare.json").then((data) => {
+    d3.json("./flare.json").then((data) => {
       // data.children.push(data)
       init(data)
     })
