@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>工时计算</title>
+  <!-- Import style -->
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.3/index.css" />
+  <!-- Import Vue 3 -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.47/vue.global.js"></script>
+  <!-- Import component library -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.3/locale/zh-cn.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.3/index.full.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .el-input,
+    .el-input-number {
+      width: 44px;
+    }
+
+    .el-input__wrapper {
+      padding: 0 8px !important;
+    }
+
+    .fe {
+      margin: 0 2px;
+    }
+
+    .el-table div.cell {
+      padding: 0 4px;
+    }
+    h3{
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <el-date-picker v-model="month" type="month" placeholder="选择月份" style="width: 100%" value-format="YYYY-M"></el-date-picker>
+    <h3>总共：{{total}}</h3>
+    <el-table :data="list">
+      <el-table-column label="日期" width="40">
+        <template #default="{row}">{{row.date}}</template>
+      </el-table-column>
+      <el-table-column label="上班时间">
+        <template #default="{row}">
+          <el-input-number v-model="row.startHour" :controls="false" placeholder="小时"></el-input-number>
+          <span class="fe">:</span>
+          <el-input-number v-model="row.startMin" :controls="false" placeholder="分钟"></el-input-number>
+        </template>
+      </el-table-column>
+      <el-table-column label="下班时间">
+        <template #default="{row}">
+          <el-input-number v-model="row.endHour" :controls="false" placeholder="小时"></el-input-number>
+          <span class="fe">:</span>
+          <el-input-number v-model="row.endMin" :controls="false" placeholder="分钟"></el-input-number>
+        </template>
+      </el-table-column>
+      <el-table-column label="当天工时">
+        <template #default="{row}">{{row.total_text}}</template>
+      </el-table-column>
+    </el-table>
+    <h3>总共：{{total}}</h3>
+  </div>
+
+  <script>
+    function getCountDays(d){
+      var curDate = new Date(d);
+      // 获取当前月份
+      var curMonth = curDate.getMonth();
+      // 实际月份比curMonth大1，下面将月份设置为下一个月
+      curDate.setMonth(curMonth+1);
+      // 将日期设置为0，表示自动计算为上个月（这里指的是当前月份）的最后一天
+      curDate.setDate(0);
+      // 返回当前月份的天数
+      return curDate.getDate();
+    }
+    function getMonth() {
+      return new Date().getFullYear() + '-' + (new Date().getMonth() + 1)
+    }
+    const App = {
+      data () {
+        return {
+          month: getMonth(),
+          list: [],
+          total: 0
+        };
+      },
+      created() {
+        getMonth()
+      },
+      watch: {
+        month: {
+          handler (v) {
+            let dates = localStorage.getItem(v)
+            if (dates) {
+              console.log(JSON.parse(dates))
+              this.list=JSON.parse(dates)
+            } else {
+              const _m = new Date(v).getMonth() + 1
+              this.list= Array.from({length: getCountDays(v)}, (item, index) => ({date: `${_m}-${index + 1}`, startHour: null, startMin: null, endHour: null, endMin: null, total: null, total_text: '' }))
+            }
+          },
+          immediate: true
+        },
+        list: {
+          handler (v) {
+            v.forEach(item => {
+              try {
+                let start = +new Date(`2022-1-1 ${item.startHour}:${item.startMin}:0`),
+                  end = +new Date(`2022-1-1 ${item.endHour}:${item.endMin}:0`)
+                item.total = (end - start) / 1000 / 60
+                let h = Math.floor(item.total / 60), m = Math.floor(item.total % 60)
+                if (!isNaN(h) && !isNaN(m)) {
+                  item.total_text = h + '小时' + m + '分钟'
+                } else {
+                  item.total_text = ''
+                  item.total = 0
+                }
+              } catch (err) { }
+            })
+            let _total = v.reduce((t, c) => {
+              t = t + c.total
+              return t
+            }, 0) / 60
+            localStorage.setItem(this.month, JSON.stringify(v))
+            // let h = Math.floor(_total / 60), m = Math.floor(_total % 60)
+            this.total = _total.toFixed(2) + '小时'
+          },
+          deep: true,
+          immediate: true
+        }
+      }
+    };
+    const app = Vue.createApp(App);
+    app.use(ElementPlus, {locale: ElementPlusLocaleZhCn});
+    app.mount("#app");
+
+  </script>
+</body>
+
+</html>
