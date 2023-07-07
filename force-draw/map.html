@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    html body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #tooltip {
+      position: absolute;
+      z-index: 2;
+      background: white;
+      padding: 10px;
+      border-radius: 2px;
+      visibility: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="/force-draw/js/three.js"></script>
+  <script src="/force-draw/js/OrbitControls.js"></script>
+  <script src="/force-draw/js/CSS3DRenderer.js"></script>
+  <script src="/force-draw/js/d3-geo.v1.min.js"></script>
+  <canvas id="canvas" width="1000" height="1000"></canvas>
+  <div id="textContent" style="position: absolute; top: 0; bottom:0; left: 0; right: 0"></div>
+  <div id="tooltip"></div>
+
+  <script type="module">
+    // import { OrbitControls } from '/force-draw/js/OrbitControls.js'
+    // 用于计算渐变色
+    function getColors (color) {
+      const c = new THREE.Color(color)
+      const originRGB = {
+        r: c.r,
+        g: c.g,
+        b: c.b
+      }
+      const hls = c.getHSL(originRGB)
+      c.setHSL(hls.h, hls.s, hls.l * 0.56)
+
+      return {
+        ...originRGB,
+        r2: c.r,
+        g2: c.g,
+        b2: c.b
+      }
+    }
+
+    // 设置纵向柱形图的颜色
+    function verticalBufferAttribute (color) {
+      const colors = []
+      const { r, g, b, r2, g2, b2 } = getColors(color)
+      for (let right = 0; right < 4; right++) {
+        right < 2 ? colors.push(r, g, b) : colors.push(r2, g2, b2)
+      }
+      for (let l = 0; l < 4; l++) {
+        l < 2 ? colors.push(r, g, b) : colors.push(r2, g2, b2)
+      }
+      for (let u = 0; u < 4; u++) {
+        colors.push(r, g, b)
+      }
+      for (let d = 0; d < 4; d++) {
+        colors.push(r2, g2, b2)
+      }
+      for (let f = 0; f < 4; f++) {
+        f < 2 ? colors.push(r, g, b) : colors.push(r2, g2, b2)
+      }
+      for (let back = 0; back < 4; back++) {
+        back < 2 ? colors.push(r, g, b) : colors.push(r2, g2, b2)
+      }
+      return new THREE.Float32BufferAttribute(colors, 3)
+    }
+
+    class chinaMap {
+      constructor() {
+        this.init()
+      }
+
+      init () {
+        // 第一步新建一个场景
+        this.scene = new THREE.Scene()
+        this.activeInstersect = []
+        this.setRenderer()
+        this.setCamera()
+        this.initTexture()
+        this.setController()
+        this.setRaycaster()
+        this.animate()
+        this.loadMapData()
+        // 加载3d 字体
+        //this.addFont()
+        // this.addHelper()
+      }
+
+      initTexture () {
+        this.texture = new THREE.TextureLoader().load('/force-draw/static/1687513407879.jpg', function onLoad () {
+          console.log('img onload')
+        },
+          function onProgress (url, itemsLoaded, itemsTotal) {
+            console.log('总加载进度：', (itemsLoaded / itemsTotal * 100).toFixed(2) + '%')
+          },
+          function (er) { console.log(er) }
+        );
+        this.texture.wrapT = THREE.RepeatWrapping 
+        this.texture.wrapS = THREE.RepeatWrapping 
+        this.texture.center.set(0.5, 0.68)
+        this.texture.repeat.set( 0.0005, 0.0008 ); 
+      }
+
+      // 加载地图数据
+      loadMapData () {
+        const loader = new THREE.FileLoader()
+        loader.load('/force-draw/json/yuhang.json', (data) => {
+          const jsondata = JSON.parse(data)
+          this.generateGeometry(jsondata)
+        })
+        // loader.load('https://geo.datav.aliyun.com/areas_v3/bound/330110.json', (data) => {
+        //   const jsondata = JSON.parse(data)
+        //   this.generateGeometry(jsondata)
+        // })
+      }
+
+      /**
+       *
+       * @param {*} text 数据
+       * @param {*} y 数据在y轴的偏移量
+       */
+      createYText(text, x, y) {
+        const element = document.createElement('span')
+        element.style.width = '100px'
+        element.style.textAlign = 'center'
+        element.style.color = '#fff'
+        element.style.fontSize = '24px'
+        element.innerText = text
+        const object = new CSS3DObject( element )
+        object.position.set(x, y, 60)
+        this.textScene.add( object )
+      }
+
+      generateGeometry (jsondata) {
+        // 初始化一个地图对象
+        this.map = new THREE.Group()
+        // 墨卡托投影转换
+        const projection = d3
+          .geoMercator()
+          // .center([120.109522, 29.181876])
+          .center([119.914653, 30.36723])
+          .translate([0, 0])
+
+        jsondata.features.forEach((elem) => {
+          // 定一个省份3D对象
+          const province = new THREE.Group()
+          // 每个的 坐标 数组
+          const coordinates = elem.geometry.coordinates
+          // 循环坐标数组
+          coordinates.forEach((multiPolygon) => {
+            const shape = new THREE.Shape()
+            const lineMaterial = new THREE.LineBasicMaterial({
+              color: '#5cddfe'
+            })
+            const points = [], points2= []
+            const xArr = [], yArr = []
+            multiPolygon.forEach((polygon, i) => {
+              let [x, y] = projection(polygon)
+              x*=1000
+              y*=1000
+              xArr.push(x)
+              yArr.push(-y)
+              if (i === 0) {
+                shape.moveTo(x, -y)
+              }
+              shape.lineTo(x, -y)
+              points.push(new THREE.Vector3(x, -y, 60))
+              points2.push(new THREE.Vector3(x, -y, -60))
+            })
+            xArr.sort((a, b) => a-b)
+            yArr.sort((a, b) => a-b)
+            const centerX = (xArr[0] + xArr.pop()) / 2
+            const centerY = (yArr[0] + yArr.pop()) / 2
+            this.createYText(elem.properties.name, centerX, centerY)
+            const lineGeometry = new THREE.BufferGeometry().setFromPoints( points )
+            const lineGeometry2 = new THREE.BufferGeometry().setFromPoints( points2 )
+            const ex = {
+              depth: 30,
+              bevelEnabled: false,
+            }
+            const geometry = new THREE.ExtrudeGeometry(shape, ex)
+            const geometry2 = new THREE.ExtrudeGeometry(shape, ex)
+            // geometry.attributes.uv = new THREE.Float32BufferAttribute(new Float32Array( [0,0,1,0,1,1,0,1] ), 2)
+            console.log(geometry.attributes)
+//             const vertices = new Float32Array([
+//   0, 0, 1000,0, 1000, 1000, 1000, 0])
+// geometry.setAttribute('uv', new THREE.BufferAttribute(vertices, 2))
+            
+            var colrMap = {
+              '百丈镇': '#58671c',
+              '五常街道': '#8c541f',
+              '仓前街道': '#2cf5ab',
+              '仁和街道': '#842d31',
+            }
+            const material = new THREE.MeshBasicMaterial({
+
+              color: colrMap[elem.properties.name] || '#346333',
+              // transparent: true,
+              // map: this.texture,
+            })
+
+            const material1 = new THREE.MeshBasicMaterial( {
+              color: '#5094bc'
+            } );
+            const material2 = new THREE.MeshBasicMaterial( {
+              color: '#4482ae',
+            } );
+            const material3 = new THREE.MeshBasicMaterial( {
+              color: '#346982',
+            } );
+            const material4 = new THREE.MeshBasicMaterial( {
+              color: '#4482ae',
+            } );
+            const mesh = new THREE.Mesh(geometry, [material, material1])
+            const mesh2 = new THREE.Mesh(geometry2, [material, material2])
+            const mesh3 = new THREE.Mesh(geometry2, [material, material3])
+            const mesh4 = new THREE.Mesh(geometry2, [material, material4])
+            mesh.position.set(0, 0, 30)
+            mesh3.position.set(0, 0, -30)
+            mesh4.position.set(0, 0, -60)
+            const line = new THREE.Line(lineGeometry, lineMaterial)
+            const line2 = new THREE.Line(lineGeometry2, lineMaterial)
+            // 将省份的属性 加进来
+            province.properties = elem.properties
+            province.add(mesh)
+            province.add(mesh2)
+            province.add(mesh3)
+            province.add(mesh4)
+            province.add(line)
+            province.add(line2)
+          })
+          this.map.add(province)
+        })
+        this.scene.add(this.map)
+      }
+
+      setController () {
+        this.controller = new OrbitControls(
+          this.camera,
+          document.getElementById('textContent')
+        )
+      }
+
+      addCube () {
+        const geometry = new THREE.BoxGeometry()
+        const material = new THREE.MeshBasicMaterial({ color: 0x50ff22 })
+        this.cube = new THREE.Mesh(geometry, material)
+        this.scene.add(this.cube)
+      }
+
+      addHelper () {
+        const helper = new THREE.CameraHelper(this.camera)
+        this.scene.add(helper)
+      }
+
+      // 新建透视相机
+      setCamera () {
+        // 第二参数就是 长度和宽度比 默认采用浏览器  返回以像素为单位的窗口的内部宽度和高度
+        this.camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          2000
+        )
+        this.camera.position.set(200, -400, 1200)
+        this.camera.lookAt(this.scene.position)
+      }
+      setRaycaster () {
+        this.raycaster = new THREE.Raycaster()
+        this.mouse = new THREE.Vector2()
+        this.tooltip = document.getElementById('tooltip')
+        const onMouseMove = (event) => {
+          this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+          this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+          this.tooltip.style.left = event.clientX + 2 + 'px'
+          this.tooltip.style.top = event.clientY + 2 + 'px'
+        }
+
+        window.addEventListener('mousemove', onMouseMove, false)
+      }
+
+      // 设置渲染器
+      setRenderer () {
+        this.renderer = new THREE.WebGLRenderer({
+          canvas: document.getElementById('canvas'),
+        })
+        // this.renderer.setPixelRatio(window.devicePixelRatio)
+        // 设置画布的大小
+        this.renderer.setSize(window.innerWidth, window.innerHeight)
+
+        this.textRenderer = new CSS3DRenderer()
+        this.textRenderer.domElement.style.position = 'absolute'
+        this.textRenderer.domElement.style.top = 0
+        this.textRenderer.setSize(window.innerWidth, window.innerHeight)
+        document.getElementById('textContent').appendChild(this.textRenderer.domElement)
+        this.textScene = new THREE.Scene()
+      }
+
+      // 设置环境光
+      setLight () {
+        let ambientLight = new THREE.AmbientLight(191970, 20) // 环境光
+        this.scene.add(ambientLight)
+      }
+
+      render () {
+        this.renderer.render(this.scene, this.camera)
+        this.textRenderer.render(this.textScene, this.camera)
+      }
+
+      animate () {
+        requestAnimationFrame(this.animate.bind(this))
+        // 通过摄像机和鼠标位置更新射线
+        this.raycaster.setFromCamera(this.mouse, this.camera)
+        // 算出射线 与当场景相交的对象有那些
+        const intersects = this.raycaster.intersectObjects(
+          this.scene.children,
+          true
+        )
+        // 恢复上一次清空的
+        if (this.lastPick) {
+          this.lastPick.object.material[0].color.set('#2defff')
+          this.lastPick.object.material[1].color.set('#3480C4')
+        }
+        this.lastPick = null
+        this.lastPick = intersects.find(
+          (item) => item.object.material && item.object.material.length === 2
+        )
+        if (this.lastPick) {
+          this.lastPick.object.material[0].color.set(0xff0000)
+          this.lastPick.object.material[1].color.set(0xff0000)
+        }
+        this.showTip()
+        this.render()
+      }
+
+      showTip () {
+        // 显示省份的信息
+        if (this.lastPick) {
+          const properties = this.lastPick.object.parent.properties
+
+          this.tooltip.textContent = properties.name
+
+          this.tooltip.style.visibility = 'visible'
+        } else {
+          this.tooltip.style.visibility = 'hidden'
+        }
+      }
+    }
+    new chinaMap().init()
+  </script>
+</body>

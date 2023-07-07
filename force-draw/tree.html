@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tree</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="jquery-3.1.1.min.js" charset="utf-8"></script>
+  <script src="d3.v5.js" charset="utf-8"></script>
+  <script>
+    class Tree {
+      constructor(opts) {
+        this.opts = Object.assign({
+          el: null,
+          nodeSize: [30, 50],
+          center: [0,0],
+          data: [],
+          negative: false
+        }, opts)
+        const {el, data, center, negative} = this.opts
+        this.negative = negative ? -1 : 1
+        this.data = data
+        // 绘制图形的元素都放到this.container里面，把this.container放到中心点
+        this.container = el.select('g').append('g').attr('transform', `translate(${center[0]}, ${center[1]})`)
+        this.linksContainer = this.container.append('g').attr('class', 'links')
+        this.nodesContainer = this.container.append('g').attr('class', 'nodes')
+        this.init()
+      }
+
+      uuid () {
+        function s4 () {
+          return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4()
+      }
+
+      init () {
+        // 给tree数据，加depth\parent\data等属性
+        this.hierarchyData = d3.hierarchy(this.data);
+        this.hierarchyData.each(node => {
+          if (node.children) node._children = node.children
+          // 给每个数据添加唯一id
+          node.data.id = this.uuid()
+        })
+        // 开始绘制
+        this.draw({x: 0, y: 0})
+      }
+
+      draw (parent) {
+        // x0, y0保存上一次绘制的坐标
+        parent.x0 = parent.x
+        parent.y0 = parent.y
+        // 计算出x、y坐标，给每个节点增加x、y属性
+        this.xyData = d3.tree().nodeSize(this.opts.nodeSize)(this.hierarchyData)
+        var nodes = []
+        // 给data属性的值，设置width属性
+        this.xyData.each(node => {
+          const originX = node.y
+          node.y = node.x;
+          node.x = originX;
+          if (nodes[node.depth]) {
+            nodes[node.depth].push(node)
+          } else {
+            nodes[node.depth] = [node]
+          }
+        })
+        this.setNodesWidth(nodes)
+        this.dragLinks(parent)
+        this.dragNodes(parent)
+      }
+
+      // 给每个节点，设置data.width属性
+      setNodesWidth (nodes) {
+        nodes.forEach((list, i) => {
+          const widthArr = []
+          list.forEach((node, j) => {
+            // 这里插入text文字，计算出文字宽度后，保存宽度，然后移除text元素
+            this.container.append('text').style('font-size', '12px').text(node.data.name).attr('width', function () {
+              node.data.width = this.getComputedTextLength()
+              widthArr.push(node.data.width)
+              d3.select(this).remove()
+            })
+          })
+          // 当前层级宽度最大值
+          list.maxWidth = Math.max(...widthArr)
+        })
+        this.setXOnTextWidth(nodes)
+      }
+
+      // 根据text文字长度设置，每个节点的x值
+      setXOnTextWidth (nodes) {
+        nodes.forEach((list, i) => {
+          // 排除根节点，从第二层开始设置
+          if (i > 0) {
+            // 上一层宽度最大值
+            const { maxWidth } = nodes[i - 1]
+            // 这样设置x值，node.parent.x从第一层0开始，每层的x都是相同的。每上一层的的node.parent.x也是相同的。
+            list.forEach((node) => {
+              node.x = node.parent.x + (maxWidth + this.opts.nodeSize[1]) * this.negative
+            })
+          }
+        })
+      }
+
+      switchNodeChildren (node) {
+        if (node.children) {
+          node.children = null
+        } else {
+          node.children = node._children
+        }
+        this.draw(node)
+      }
+
+      /**
+       * 绘制节点
+       * 
+       * @param {Object} parent 从哪个点开始绘制
+       */
+      dragNodes (parent) {
+        var padding = 4
+        var nodesData = this.xyData.descendants()
+        const nodes = this.nodesContainer.selectAll('g').data(nodesData, d => d.data.id)
+        const nodesEnter = nodes.enter().append('g').attr('transform', d => {
+          return `translate(${parent.x0}, ${parent.y0})`
+        }).attr("fill-opacity", 1).style('cursor', 'pointer').on('click', (d) => {
+          // 根节点不可以点击
+          if (d.depth == 0) return
+          this.switchNodeChildren(d)
+        })
+        var nodesUpdate = nodes.merge(nodesEnter).transition().duration(500).attr('transform', d => {
+          return d.depth == 0 ? `translate(0, 0)` : `translate(${d.x + d.data.width / 2 * this.negative }, ${d.y})`
+        })
+        var nodesExit = nodes.exit().transition().duration(500).remove()
+          .attr("transform", d => `translate(${parent.x},${parent.y})`)
+          .attr("fill-opacity", 0)
+          .attr("stroke-opacity", 0);
+        // 为每个新增的g，里面增加rect和text
+        nodesEnter.each((node, i) => {
+          const gNode = d3.select(nodes._parents[0].children[i])
+          gNode.append('rect').attr('width', node.data.width + padding * 2).attr('height', 20).attr('fill', '#fff').attr('rx', 2).attr('stroke', '#389E0D').attr('y', -11).attr('x', d => -d.data.width / 2)
+          gNode.append('text').text(node.data.name).attr('text-anchor', 'middle').attr('dominant-baseline', 'middle').style('font-size', 12 + 'px').attr('x', padding)
+        })
+      }
+
+      /**
+       * 绘制连线
+       * 
+       * @param {Object} parent 从哪个点开始绘制
+       */
+      dragLinks (parent) {
+        const linksData = this.xyData.links()
+        const links = this.linksContainer.selectAll('path').data(linksData, d => d.target.data.id)
+        const linkEnter = links.enter().append('path')
+          .attr('stroke', '#D8D8D8').attr('stroke-opacity', 0.9).attr('fill', 'none')
+          .attr('d', d => {
+            return `M ${parent.x0}, ${parent.y0} L ${parent.x0}, ${parent.y0} L ${parent.x0}, ${parent.y0} L ${parent.x0}, ${parent.y0}`
+          })
+        links.merge(linkEnter).transition().duration(500).attr('d', d => {
+          const { source: s, target: t } = d
+          return `M ${s.x}, ${s.y} L ${t.x - 20 * this.negative}, ${s.y} L ${t.x - 20 * this.negative}, ${t.y} L ${t.x}, ${t.y}`
+        })
+        links.exit().transition().duration(500).remove()
+          .attr('stroke-opacity', 0)
+          .attr('d', d => {
+            return `M ${parent.x}, ${parent.y} L ${parent.x}, ${parent.y} L ${parent.x}, ${parent.y} L ${parent.x}, ${parent.y}`
+          })
+      }
+    }
+
+    class doubleTree {
+      constructor(el, data) {
+        var width = el.clientWidth,
+          height = el.clientHeight;
+        var svg = d3.select(el).append('svg').attr('width', width).attr('height', height)
+        var container = svg.append('g')
+        svg.call(d3.zoom().scaleExtent([0.2, 2]).on('zoom', () => {
+          container.attr('transform', d3.event.transform)
+        }));
+        new Tree({
+          el: svg,
+          center: [width/2, height/2],
+          data: data.r
+        })
+        new Tree({
+          el: svg,
+          center: [width/2, height/2],
+          data: data.l,
+          negative: true
+        })
+      }
+    }
+
+    $.ajax({
+      url: "./first.json",
+      contentType: "application/json;charset=UTF-8",
+      type: "get",
+      dataType: "json",
+      success: (data) => {
+        new doubleTree(document.body, data)
+      }
+    })
+
+  </script>
+</body>
+
+</html>
