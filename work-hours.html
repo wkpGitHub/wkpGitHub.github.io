@@ -38,16 +38,22 @@
     h3{
       padding: 5px;
     }
+    .el-table div.cell{
+      padding-right: 0 !important;
+    }
   </style>
 </head>
 
 <body>
   <div id="app">
-    <el-date-picker v-model="month" type="month" placeholder="选择月份" style="width: 100%" value-format="YYYY-M"></el-date-picker>
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <el-date-picker v-model="month" type="month" placeholder="选择月份" style="width: 100%" value-format="YYYY-M"></el-date-picker>
+    </div>
     <h3>总共：{{total}}</h3>
+    <div style="flex-shrink: 0;"><el-checkbox v-model="half">每天减0.5小时</el-checkbox></div>
     <el-table :data="list">
-      <el-table-column label="日期" width="40">
-        <template #default="{row}">{{row.date}}</template>
+      <el-table-column label="日期" width="54">
+        <template #default="{row}"><el-checkbox v-model="row.half"></el-checkbox>{{row.date}}</template>
       </el-table-column>
       <el-table-column label="上班时间">
         <template #default="{row}">
@@ -90,7 +96,8 @@
         return {
           month: getMonth(),
           list: [],
-          total: 0
+          // total: 0,
+          half: true
         };
       },
       created() {
@@ -105,18 +112,26 @@
               this.list=JSON.parse(dates)
             } else {
               const _m = new Date(v).getMonth() + 1
-              this.list= Array.from({length: getCountDays(v)}, (item, index) => ({date: `${_m}-${index + 1}`, startHour: null, startMin: null, endHour: null, endMin: null, total: null, total_text: '' }))
+              this.list= Array.from({length: getCountDays(v)}, (item, index) => ({date: `${_m}-${index + 1}`, startHour: null, startMin: null, endHour: null, endMin: null, total: null, total_text: '', half: true }))
             }
           },
           immediate: true
         },
-        list: {
-          handler (v) {
-            v.forEach(item => {
+        half(v) {
+          this.list.forEach(item => {
+            item.half = v
+          })
+        }
+      },
+      computed: {
+        total() {
+          const v = this.list
+          v.forEach(item => {
               try {
                 let start = +new Date(`2022-1-1 ${item.startHour}:${item.startMin}:0`),
                   end = +new Date(`2022-1-1 ${item.endHour}:${item.endMin}:0`)
                 item.total = (end - start) / 1000 / 60
+                if (item.half) item.total -= 30
                 let h = Math.floor(item.total / 60), m = Math.floor(item.total % 60)
                 if (!isNaN(h) && !isNaN(m)) {
                   item.total_text = h + '小时' + m + '分钟'
@@ -132,10 +147,7 @@
             }, 0) / 60
             localStorage.setItem(this.month, JSON.stringify(v))
             // let h = Math.floor(_total / 60), m = Math.floor(_total % 60)
-            this.total = _total.toFixed(2) + '小时'
-          },
-          deep: true,
-          immediate: true
+            return _total.toFixed(2) + '小时'
         }
       }
     };
