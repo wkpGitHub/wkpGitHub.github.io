@@ -13,6 +13,9 @@
   <!-- Import component library -->
   <script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.3/locale/zh-cn.min.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.3/index.full.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.3.6/axios.js"></script>
+  <script src="./node_modules/tesseract.js/dist/tesseract.min.js"></script>
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/tesseract.js/4.0.3/worker.min.js"></script> -->
   <style>
     * {
       padding: 0;
@@ -48,6 +51,7 @@
   <div id="app">
     <div style="display: flex; align-items: center; justify-content: space-between;">
       <el-date-picker v-model="month" type="month" placeholder="选择月份" style="width: 100%" value-format="YYYY-M"></el-date-picker>
+      <el-button type="primary" @click="uploadImg">上传照片</el-button>
     </div>
     <h3>总共：{{total}}</h3>
     <div style="flex-shrink: 0;"><el-checkbox v-model="half">每天减0.5小时</el-checkbox></div>
@@ -148,6 +152,46 @@
             localStorage.setItem(this.month, JSON.stringify(v))
             // let h = Math.floor(_total / 60), m = Math.floor(_total % 60)
             return _total.toFixed(2) + '小时'
+        }
+      },
+      methods: {
+        sbImg(image) {
+          axios.post('https://127.0.0.1:6916/baidu/handwriting', {
+            image
+          }).then(({data}) => {
+            let currentItem = {}
+            data.words_result.forEach((item, index) => {
+              const {words} = item
+              if (index % 2 === 0) {
+                currentItem = this.list.find(ele => {
+                  return words.endsWith(ele.date) || words.split(/\D/).filter(d => d).join('-').endsWith(ele.date)
+                })
+              } else {
+                if (currentItem) {
+                  const [startTime, endTime] = words.split('-')
+                  const [startHour, startMin] = startTime.split(/[:=]/)
+                  const [endHour, endMin] = endTime.split(/[:=]/)
+                  currentItem.startHour = startHour
+                  currentItem.startMin = startMin
+                  currentItem.endHour = endHour
+                  currentItem.endMin = endMin
+                }
+              }
+            })
+          })
+        },
+        uploadImg() {
+          const inputNode = document.createElement('input')
+          inputNode.type = 'file'
+          inputNode.onchange = e => {
+            const file = e.target.files[0]
+            const fileRender = new FileReader()
+            fileRender.readAsDataURL(file)
+            fileRender.onload = () => {
+              this.sbImg(fileRender.result.split(',').pop())
+            }
+          }
+          inputNode.click()
         }
       }
     };
