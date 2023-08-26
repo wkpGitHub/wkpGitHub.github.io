@@ -183,6 +183,8 @@
         uploadImg() {
           const inputNode = document.createElement('input')
           inputNode.type = 'file'
+          inputNode.accept = 'image/*'
+          inputNode.capture = 'camera'
           inputNode.onchange = e => {
             const file = e.target.files[0]
             const fileRender = new FileReader()
