@@ -50,7 +50,7 @@
 <body>
   <div id="app" v-loading="loading">
     <div style="display: flex; align-items: center; justify-content: space-between;">
-      <el-date-picker v-model="month" type="month" placeholder="选择月份" style="width: 100%" value-format="YYYY-M"></el-date-picker>
+      <el-date-picker v-model="month" type="month" placeholder="选择月份" style="width: 100%" value-format="YYYY/M"></el-date-picker>
       <el-button type="primary" @click="uploadImg">上传照片</el-button>
     </div>
     <h3>总共：{{total}}</h3>
@@ -93,7 +93,7 @@
       return curDate.getDate();
     }
     function getMonth() {
-      return new Date().getFullYear() + '-' + (new Date().getMonth() + 1)
+      return new Date().getFullYear() + '/' + (new Date().getMonth() + 1)
     }
     const App = {
       data () {
