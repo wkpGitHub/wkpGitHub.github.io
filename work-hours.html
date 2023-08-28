@@ -116,8 +116,8 @@
               console.log(JSON.parse(dates))
               this.list=JSON.parse(dates)
             } else {
-              const _m = new Date(v).getMonth() + 1
-              this.list= Array.from({length: getCountDays(v)}, (item, index) => ({date: `${_m}-${index + 1}`, startHour: null, startMin: null, endHour: null, endMin: null, total: null, total_text: '', half: true }))
+              const _m = new Date(`${v}/1`).getMonth() + 1
+              this.list= Array.from({length: getCountDays(`${v}/1`)}, (item, index) => ({date: `${_m}-${index + 1}`, startHour: null, startMin: null, endHour: null, endMin: null, total: null, total_text: '', half: true }))
             }
           },
           immediate: true
