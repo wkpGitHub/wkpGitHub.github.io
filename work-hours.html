@@ -48,7 +48,7 @@
 </head>
 
 <body>
-  <div id="app">
+  <div id="app" v-loading="loading">
     <div style="display: flex; align-items: center; justify-content: space-between;">
       <el-date-picker v-model="month" type="month" placeholder="选择月份" style="width: 100%" value-format="YYYY-M"></el-date-picker>
       <el-button type="primary" @click="uploadImg">上传照片</el-button>
@@ -101,7 +101,8 @@
           month: getMonth(),
           list: [],
           // total: 0,
-          half: true
+          half: true,
+          loading: false
         };
       },
       created() {
@@ -132,8 +133,8 @@
           const v = this.list
           v.forEach(item => {
               try {
-                let start = +new Date(`2022-1-1 ${item.startHour}:${item.startMin}:0`),
-                  end = +new Date(`2022-1-1 ${item.endHour}:${item.endMin}:0`)
+                let start = +new Date(`2022/1/1 ${item.startHour}:${item.startMin}:0`),
+                  end = +new Date(`2022/1/1 ${item.endHour}:${item.endMin}:0`)
                 item.total = (end - start) / 1000 / 60
                 if (item.half) item.total -= 30
                 let h = Math.floor(item.total / 60), m = Math.floor(item.total % 60)
@@ -156,6 +157,7 @@
       },
       methods: {
         sbImg(image) {
+          this.loading = true
           axios.post('https://60.204.145.141:6916/baidu/handwriting', {
             image
           }).then(({data}) => {
@@ -177,6 +179,10 @@
                   currentItem.endMin = endMin
                 }
               }
+            }).catch(err => {
+              alert('图片太大，建议使用微信发送图片，然后下载微信上的图片，来压缩图片')
+            }).finally(()=> {
+              this.loading = false
             })
           })
         },
