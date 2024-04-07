@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>证件查找</title>
+  <!-- Import style -->
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.3/index.css" />
+  <!-- Import Vue 3 -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.47/vue.global.js"></script>
+  <!-- Import component library -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.3/locale/zh-cn.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.3/index.full.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.3.6/axios.js"></script>
+  <!-- <script src="./node_modules/tesseract.js/dist/tesseract.min.js"></script> -->
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/tesseract.js/4.0.3/worker.min.js"></script> -->
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .el-select {
+      width: 100%;
+    }
+
+
+    .flex {
+      display: flex;
+      gap: 4px;
+      padding: 8px;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="flex">
+      <el-select v-model="user" @change="setZjs" placeholder="选择人">
+        <el-option v-for="item in users" :label="item" :value="item" :key="item" />
+      </el-select>
+      <el-select v-model="zj" @change="setZjPic" placeholder="选择证件类型">
+        <el-option v-for="item in zjs" :label="item" :value="item" :key="item" />
+      </el-select>
+    </div>
+    <div class="flex">
+      <el-input style="flex: 1;" readonly :value="code" size="small"></el-input>
+      <el-button type="primary" size="small" @click="copyCode" :disabled="!code">复制证件号</el-button>
+    </div>
+    <div style="padding: 8px;">
+      <canvas id="canvas" style="width: 100%"></canvas>
+      <el-input v-model="watermarkText" placeholder="如需加水印，请输入水印名称"></el-input>
+      <el-button type="success" style="width: 100%;margin: 8px 0;" @click="addWatermark">添加水印文字</el-button>
+      <el-button type="primary" style="width: 100%;margin-left:0" @click="uploadZjPic">下载证件图片</el-button>
+    </div>
+  </div>
+
+  <script>
+    function exeCommandCopyText (text) {
+      try {
+        const t = document.createElement('textarea')
+        t.nodeValue = text
+        t.value = text
+        document.body.appendChild(t)
+        t.select()
+        document.execCommand('copy');
+        document.body.removeChild(t)
+        return true
+      } catch (e) {
+        console.log(e)
+        return false
+      }
+    }
+    const zjMap = {
+      '王康平': {
+        '身份证-正面': '362322199204046916',
+        '身份证-反面': '362322199204046916',
+        '驾驶证': '',
+        '行驶证': '',
+        '毕业证': '',
+        '学位证': '',
+        '学信网截图': '',
+        '结婚证': '',
+        '房产证': '',
+      },
+      '夏晓岚': {
+        '身份证-正面': '362322199205286022',
+        '身份证-反面': '362322199205286022',
+        '驾驶证': '',
+        '行驶证': '',
+        '毕业证': '',
+        '学位证': '',
+        '结婚证': '',
+        '房产证': '',
+      },
+      '王迥果': {
+        '身份证-正面': '361122201706186917',
+        '身份证-反面': '361122201706186917',
+      },
+      '王远水': {
+        '身份证-正面': '362322196701016917',
+        '身份证-反面': '362322196701016917',
+      },
+      '黄式仙': {
+        '身份证-正面': '362322197002086929',
+        '身份证-反面': '362322197002086929',
+      }
+    }
+    const App = {
+      data () {
+        return {
+          code: '',
+          user: '',
+          zj: '',
+          watermarkText: '',
+          users: ['王康平', '夏晓岚', '王迥果', '王远水', '黄式仙'],
+          zjs: []
+        };
+      },
+      mounted () {
+        this.ctx = canvas.getContext('2d')
+        this.setupCanvas()
+      },
+
+
+      methods: {
+        setupCanvas () {
+          // Get the device pixel ratio, falling back to 1.
+          var dpr = window.devicePixelRatio || 1;
+          // Get the size of the canvas in CSS pixels.
+          var rect = canvas.getBoundingClientRect();
+          // Give the canvas pixel dimensions of their CSS
+          // size * the device pixel ratio.
+          canvas.width = rect.width * dpr;
+          canvas.height = rect.height * dpr;
+          var ctx = canvas.getContext('2d');
+          // 核心代码，设置缩放
+          ctx.scale(dpr, dpr);
+          
+        },
+        copyCode () {
+          let flag = exeCommandCopyText(this.code)
+          if (flag) {
+            ElementPlus.ElMessage.success('复制成功！')
+          }
+        },
+        setZjs (v) {
+          this.zj = ''
+          this.zjs = Object.keys(zjMap[v])
+        },
+        setZjPic (v) {
+          if (!v) return
+          const _user = zjMap[this.user]
+          this.code = _user[v]
+          const img = this.img = new Image(v)
+          img.src = `/images/zhengjian/${this.user}.${v}.jpg`
+          img.onload = (v) => {
+            const { naturalWidth, naturalHeight } = img
+            const { width } = canvas
+            const rate = naturalWidth / width
+            const canvasNewHeight = naturalHeight / rate
+            canvas.height = canvasNewHeight
+            this.ctx.drawImage(img, 0, 0, width, canvasNewHeight)
+          }
+        },
+        uploadZjPic () {
+          var url = canvas.toDataURL();
+          var a = document.createElement("a");
+          a.href = url;
+          a.setAttribute('download', `${this.user}.${this.zj}.png`)
+          a.click()
+        },
+
+        addWatermark () {
+          const { width, height } = canvas
+          this.ctx.clearRect(0, 0, width, height)
+          this.ctx.save();
+          this.ctx.drawImage(this.img, 0, 0, width, height)
+          this.ctx.font = "bold 120px serif";
+          this.ctx.textAlign = 'center'
+          this.ctx.textBaseline = 'middle'
+          this.ctx.fillStyle = 'rgba(0,0,0,0.15)'
+          this.ctx.translate(width/2, height/ 2)
+          this.ctx.rotate(-Math.PI / 180 * 30)
+          this.ctx.translate(-width/2, -height/ 2)
+          const text = this.ctx.measureText(this.watermarkText) 
+          const textWidth = text.width
+          const xNum = Math.ceil(width / textWidth + 100) 
+          const yNum = Math.ceil( height / 250)
+
+          for (let i=0; i <= xNum; i++) {
+            for(let j=0; j <= yNum; j++) {
+              // 绘制文字
+              this.ctx.fillText(this.watermarkText, i * (textWidth+100), j*250)
+            }
+          }
+
+          this.ctx.restore();
+        }
+      }
+    };
+    const app = Vue.createApp(App);
+    app.use(ElementPlus, { locale: ElementPlusLocaleZhCn });
+    app.mount("#app");
+
+  </script>
+</body>
+
+</html>
