@@ -50,7 +50,7 @@
       <el-input style="flex: 1;" readonly :value="code" size="small"></el-input>
       <el-button type="primary" size="small" @click="copyCode" :disabled="!code">复制证件号</el-button>
     </div>
-    <div style="padding: 8px;">
+    <div style="padding: 8px;" v-loading="loading">
       <canvas id="canvas" style="width: 100%"></canvas>
       <el-input v-model="watermarkText" placeholder="如需加水印，请输入水印名称"></el-input>
       <el-button type="success" style="width: 100%;margin: 8px 0;" @click="addWatermark">添加水印文字</el-button>
@@ -112,6 +112,7 @@
     const App = {
       data () {
         return {
+          loading: false,
           code: '',
           user: '',
           zj: '',
@@ -156,6 +157,7 @@
           const _user = zjMap[this.user]
           this.code = _user[v]
           const img = this.img = new Image(v)
+          this.loading = true
           img.src = `/images/zhengjian/${this.user}.${v}.jpg`
           img.onload = (v) => {
             const { naturalWidth, naturalHeight } = img
@@ -164,6 +166,10 @@
             const canvasNewHeight = naturalHeight / rate
             canvas.height = canvasNewHeight
             this.ctx.drawImage(img, 0, 0, width, canvasNewHeight)
+            this.loading = false
+          }
+          img.onerror = () => {
+            this.loading = false
           }
         },
         uploadZjPic () {
