@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扫雷游戏</title>
+    <link rel="stylesheet" href="/saolei/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>扫雷游戏</h1>
+            <div class="controls">
+                <div class="control-group">
+                    <label>难度:</label>
+                    <select id="difficulty">
+                        <option value="easy">简单 (9x9, 10个雷)</option>
+                        <option value="medium">中等 (16x16, 40个雷)</option>
+                        <option value="hard">困难 (16x30, 99个雷)</option>
+                        <option value="custom">自定义</option>
+                    </select>
+                </div>
+                <div class="control-group" id="customControls" style="display: none;">
+                    <input type="number" id="rows" placeholder="行数" min="5" max="30" value="9">
+                    <input type="number" id="cols" placeholder="列数" min="5" max="50" value="9">
+                    <input type="number" id="mines" placeholder="雷数" min="1" max="999" value="10">
+                </div>
+                <button id="newGame" class="btn">新游戏</button>
+            </div>
+        </header>
+
+        <div class="game-info">
+            <div class="info-item">
+                <span class="label">剩余地雷:</span>
+                <span id="mineCount" class="value">10</span>
+            </div>
+            <div class="info-item">
+                <span class="label">时间:</span>
+                <span id="timer" class="value">0</span>
+                <span class="unit">秒</span>
+            </div>
+            <div class="info-item">
+                <span id="gameStatus" class="status">准备开始</span>
+            </div>
+        </div>
+
+        <div class="game-container">
+            <div id="gameBoard" class="game-board"></div>
+        </div>
+
+        <div class="game-over-modal" id="gameOverModal">
+            <div class="modal-content">
+                <h2 id="gameOverTitle">游戏结束</h2>
+                <p id="gameOverMessage">恭喜你赢了！</p>
+                <button id="restartGame" class="btn">再玩一局</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/saolei/minesweeper.js"></script>
+</body>
+</html>
